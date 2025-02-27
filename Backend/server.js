@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true
 })
 .then(() => console.log('MongoDB Connected'))
-.catch(err => console.error(err));
+.catch(err => console.error('MongoDB Connection Error',err));
 
 // User Schema
 const UserSchema = new mongoose.Schema({
