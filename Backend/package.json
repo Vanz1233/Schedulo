@@ -15,5 +15,8 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.11.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.2.0"
   }
 }
