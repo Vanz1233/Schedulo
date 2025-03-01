@@ -1,35 +1,57 @@
 <div class="signup-container">
-    <div class="signup-box">
-      <h2 class="signup-title">Sign Up</h2>
-  
-      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <div class="input-group">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" formControlName="fullName" placeholder="Enter your name" />
+  <div class="signup-box">
+    <h2 class="signup-title">Sign Up</h2>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <!-- Full Name -->
+      <div class="input-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" formControlName="fullName" placeholder="Enter your name" />
+        <div class="error" *ngIf="signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched">
+          {{ getErrorMessage('fullName') }}
         </div>
-  
-        <div class="input-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" formControlName="email" placeholder="Enter your email address" />
+      </div>
+
+      <!-- Email -->
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" formControlName="email" placeholder="Enter your email address" />
+        <div class="error" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+          {{ getErrorMessage('email') }}
         </div>
-  
-        <div class="input-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" formControlName="phone" placeholder="Enter your phone number" />
+      </div>
+
+      <!-- Phone -->
+      <div class="input-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" formControlName="phone" placeholder="Enter your phone number" />
+        <div class="error" *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched">
+          {{ getErrorMessage('phone') }}
         </div>
-  
-        <div class="input-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" formControlName="username" placeholder="Create your username" />
+      </div>
+
+      <!-- Username -->
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" formControlName="username" placeholder="Create your username" />
+        <div class="error" *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">
+          {{ getErrorMessage('username') }}
         </div>
-  
-        <div class="input-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" formControlName="password" placeholder="Create your password" />
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password" placeholder="Create your password" />
+        <div class="error" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+          {{ getErrorMessage('password') }}
         </div>
-  
-        <button type="submit" class="signup-button" [disabled]="signupForm.invalid">Sign up</button>
-      </form>
-    </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="signup-button" [disabled]="signupForm.invalid">Sign up</button>
+    </form>
   </div>
+</div>
+
   

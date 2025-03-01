@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,39 +10,62 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SignupComponent {
   signupForm: FormGroup;
-  isSubmitting = false; // Prevent multiple submissions
+  errorMessages: any = {
+    fullName: "Full Name is required.",
+    email: {
+      required: "Email is required.",
+      email: "Invalid email format (e.g., someone@example.com)."
+    },
+    phone: {
+      required: "Phone number is required.",
+      pattern: "Invalid phone number format."
+    },
+    username: "Username is required.",
+    password: {
+      required: "Password is required.",
+      minlength: "Password must be at least 8 characters long."
+    }
+  };
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.signupForm = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('^(\\+\\d{1,3})?\\d{10,15}$')]],
+      phone: ['', [Validators.required, Validators.pattern('^\\+?[0-9]{10,15}$')]],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
-  onSubmit() {
-    if (this.signupForm.valid && !this.isSubmitting) {
-      this.isSubmitting = true;
-      const formData = this.signupForm.value;
+  getErrorMessage(field: string): string {
+    const control = this.signupForm.get(field);
+    if (control?.hasError('required')) return this.errorMessages[field].required || this.errorMessages[field];
+    if (control?.hasError('email')) return this.errorMessages[field].email;
+    if (control?.hasError('pattern')) return this.errorMessages[field].pattern;
+    if (control?.hasError('minlength')) return this.errorMessages[field].minlength;
+    return "";
+  }
 
-      this.http.post('http://localhost:3000/api/signup', formData).subscribe(
+  onSubmit() {
+    if (this.signupForm.valid) {
+      // Send form data to the backend
+      this.http.post('http://localhost:3000/api/signup', this.signupForm.value).subscribe(
         response => {
           console.log('User registered successfully:', response);
-          alert('Signup successful!');
-          this.signupForm.reset(); // Reset form after success
+          alert('Signup successful! Redirecting to login...');
+          this.router.navigate(['/login']); // Redirect to login page
         },
         error => {
           console.error('Signup failed:', error);
           alert('Signup failed. Please try again.');
         }
-      ).add(() => this.isSubmitting = false); // Reset button state after request
+      );
     } else {
       alert('Please fill in all required fields correctly.');
     }
   }
 }
+
 
 
 
