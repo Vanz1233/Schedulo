@@ -1,0 +1,35 @@
+<div class="signup-container">
+    <div class="signup-box">
+      <h2 class="signup-title">Sign Up</h2>
+  
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" formControlName="fullName" placeholder="Enter your name" />
+        </div>
+  
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" formControlName="email" placeholder="Enter your email address" />
+        </div>
+  
+        <div class="input-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" formControlName="phone" placeholder="Enter your phone number" />
+        </div>
+  
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" formControlName="username" placeholder="Create your username" />
+        </div>
+  
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" formControlName="password" placeholder="Create your password" />
+        </div>
+  
+        <button type="submit" class="signup-button" [disabled]="signupForm.invalid">Sign up</button>
+      </form>
+    </div>
+  </div>
+  
