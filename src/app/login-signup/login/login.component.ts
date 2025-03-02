@@ -21,22 +21,26 @@ export class LoginComponent {
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   onLogin() { // Function to handle login form submission
     if (this.loginForm.valid) {
-      this.http.post<any>('http://localhost:3000/api/login', this.loginForm.value)
+      this.http.post<{ token: string }>('http://localhost:3000/api/login', this.loginForm.value)
         .subscribe({
           next: (response) => {
-            console.log('Login successful:', response);
-            this.authService.setToken(response.token); // Store token using AuthService
-            alert('Login successful! Redirecting to homepage...');
-            this.router.navigate(['/home']); // Redirect to homepage
+            if (response?.token) {
+              this.authService.setToken(response.token); // Store token using AuthService
+              alert('Login successful! Redirecting to homepage...');
+              this.router.navigate(['/home']); // Redirect to homepage
+            } else {
+              this.errorMessage = 'Invalid response from server. No token received.';
+            }
           },
           error: (err) => {
-            this.errorMessage = err.error?.error || 'Login failed. Please try again.';
+            console.error('Login error:', err);
+            this.errorMessage = err.error?.message || 'Login failed. Please try again.';
           }
         });
     } else {
@@ -46,19 +50,13 @@ export class LoginComponent {
 
   getErrorMessage(field: string): string {
     const control = this.loginForm.get(field);
-  
-    if (control?.hasError('required')) {
-      return 'This field is required';
-    }
-  
-    if (control?.hasError('email')) {
-      return 'Please enter a valid email address';
-    }
-  
+    if (control?.hasError('required')) return `${field} is required`;
+    if (field === 'email' && control?.hasError('email')) return 'Invalid email format';
+    if (field === 'password' && control?.hasError('minlength')) return 'Password must be at least 6 characters';
     return '';
   }
-  
 }
+
 
 
 

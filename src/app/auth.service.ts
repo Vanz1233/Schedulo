@@ -20,6 +20,10 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!this.getToken(); // Returns true if a token exists
   }
+
+  logout() {
+    localStorage.removeItem('authToken');
+  }
 }
 
 
