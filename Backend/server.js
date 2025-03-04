@@ -5,6 +5,10 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+// Import Models
+const User = require('./models/User');
+const EventOrganizer = require('./models/EventOrganizer');
+
 const app = express();
 
 // Debug: Ensure .env variables are loaded
@@ -33,23 +37,10 @@ mongoose.connect(process.env.MONGO_URI, {
   process.exit(1);
 });
 
-// User Schema
-const UserSchema = new mongoose.Schema({
-  fullName: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  phone: { type: String, required: true },
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
-});
-
-const User = mongoose.model('User', UserSchema);
-
-// Signup Route
+// ✅ User Signup Route
 app.post('/api/signup', async (req, res) => {
   try {
     const { fullName, email, phone, username, password } = req.body;
-
-    // Convert email to lowercase for consistency
     const lowerEmail = email.toLowerCase();
 
     // Check if user already exists
@@ -59,18 +50,10 @@ app.post('/api/signup', async (req, res) => {
     }
 
     // Hash Password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Save New User
-    const newUser = new User({ 
-      fullName, 
-      email: lowerEmail, 
-      phone, 
-      username, 
-      password: hashedPassword 
-    });
-    
+    const newUser = new User({ fullName, email: lowerEmail, phone, username, password: hashedPassword });
     await newUser.save();
 
     res.status(201).json({ message: 'User registered successfully!' });
@@ -80,41 +63,26 @@ app.post('/api/signup', async (req, res) => {
   }
 });
 
-// Login Route
+// ✅ User Login Route
 app.post('/api/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-    
-    // Convert email to lowercase
     const lowerEmail = email.toLowerCase();
 
-    // Debug logs
-    console.log("Login Attempt - Entered Email:", lowerEmail);
-    
-    // Check if user exists
+    // Find user
     const user = await User.findOne({ email: lowerEmail });
-    console.log("Database User Found:", user);
-
     if (!user) {
       return res.status(400).json({ error: 'Invalid email or password' });
     }
 
     // Compare passwords
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log("Entered Password:", password);
-    console.log("Stored Hashed Password:", user.password);
-    console.log("Password Match Result:", isMatch);
-
     if (!isMatch) {
       return res.status(400).json({ error: 'Invalid email or password' });
     }
 
     // Generate JWT Token
-    const token = jwt.sign(
-      { userId: user._id, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
+    const token = jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.status(200).json({ 
       message: 'Login successful!', 
@@ -133,6 +101,39 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+// ✅ Event Organizer Registration Route (Uses Correct Model)
+app.post('/api/register-organizer', async (req, res) => {
+  try {
+    const { organizerName, fullName, email, phone, username, password } = req.body;
+    const lowerEmail = email.toLowerCase();
+
+    // Check if organizer already exists
+    const existingOrganizer = await EventOrganizer.findOne({ email: lowerEmail });
+    if (existingOrganizer) {
+      return res.status(400).json({ error: 'Organizer with this email already exists' });
+    }
+
+    // Hash Password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Save New Event Organizer
+    const newOrganizer = new EventOrganizer({
+      organizerName,
+      fullName,
+      email: lowerEmail,
+      phone,
+      username,
+      password: hashedPassword
+    });
+
+    await newOrganizer.save();
+    res.status(201).json({ message: 'Event Organizer registered successfully!' });
+  } catch (error) {
+    console.error('Registration Error:', error);
+    res.status(500).json({ error: 'Registration failed' });
+  }
+});
+
 // Debug: List Registered Routes
 console.log('Registered Routes:', app._router.stack
   .filter(r => r.route)
@@ -142,6 +143,7 @@ console.log('Registered Routes:', app._router.stack
 // Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
 
 
 
