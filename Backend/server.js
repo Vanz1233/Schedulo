@@ -2,34 +2,30 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const nodemailer = require('nodemailer'); // ✅ Added nodemailer for debugging email issues
+const nodemailer = require('nodemailer');
 
-const eventOrganizerRoutes = require('./routes/eventOrganiser'); // Import event organizer routes
+const eventOrganizerRoutes = require('./routes/eventOrganiser'); 
+const ticketRoutes = require('./routes/ticketRoutes');
 
 const app = express();
 
-// Debug: Ensure .env variables are loaded
-if (!process.env.JWT_SECRET) {
-  console.error("❌ JWT_SECRET is missing in .env file");
-  process.exit(1);
-}
-if (!process.env.MONGO_URI) {
-  console.error("❌ MONGO_URI is missing in .env file");
-  process.exit(1);
-}
-if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-  console.error("❌ EMAIL_USER or EMAIL_PASS is missing in .env file");
+// ✅ Validate Environment Variables
+const requiredEnvVars = ['JWT_SECRET', 'MONGO_URI', 'EMAIL_USER', 'EMAIL_PASS'];
+let missingEnvVars = requiredEnvVars.filter((key) => !process.env[key]);
+
+if (missingEnvVars.length > 0) {
+  console.error(`❌ Missing environment variables: ${missingEnvVars.join(', ')}`);
   process.exit(1);
 } else {
-  console.log("✅ Email credentials loaded");
+  console.log('✅ All required environment variables are loaded');
 }
 
-// Middleware
+// ✅ Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// MongoDB Connection
+// ✅ MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -40,21 +36,40 @@ mongoose.connect(process.env.MONGO_URI, {
   process.exit(1);
 });
 
-// ✅ Updated Routes - Now works with "/api/register-organizer"
+// ✅ Load Routes
 app.use('/api', eventOrganizerRoutes); 
+app.use('/api/tickets', ticketRoutes);
 
-// Debug: List Registered Routes
-app._router.stack
-  .filter(r => r.route)
-  .forEach(r => console.log(`📌 Route Registered: ${r.route.path}`));
+// ✅ Debug Registered Routes (Only in Development)
+if (process.env.NODE_ENV === 'development') {
+  console.log('📌 Registered Routes:');
+  app._router.stack
+    .filter(r => r.route)
+    .forEach(r => console.log(`➡️ ${r.route.path}`));
+}
 
+// ✅ Nodemailer Debugging
+const transporter = nodemailer.createTransport({
+  service: 'gmail',  // Or use another email service
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 
+// ✅ Test Email Configuration
+transporter.verify((error, success) => {
+  if (error) {
+    console.error('❌ Email Service Error:', error);
+  } else {
+    console.log('✅ Email Service Ready to Send Emails');
+  }
+});
 
-// Start Server
+// ✅ Start Server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
 
-console.log("EMAIL_USER:", process.env.EMAIL_USER);
 
 
 

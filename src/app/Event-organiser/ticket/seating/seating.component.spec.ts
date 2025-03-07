@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageTwoComponent } from './page-two.component';
+import { SeatingComponent } from './seating.component';
 
-describe('PageTwoComponent', () => {
-  let component: PageTwoComponent;
-  let fixture: ComponentFixture<PageTwoComponent>;
+describe('SeatingComponent', () => {
+  let component: SeatingComponent;
+  let fixture: ComponentFixture<SeatingComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PageTwoComponent]
+      declarations: [SeatingComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PageTwoComponent);
+    fixture = TestBed.createComponent(SeatingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
