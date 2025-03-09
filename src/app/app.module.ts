@@ -12,6 +12,7 @@ import { RegisteredEventOrganisersComponent } from './Admin/registered-event-org
 import { PageOneComponent } from './Event-organiser/ticket/page-one/page-one.component';
 import { PasswordComponent } from './password/password.component';
 import { SeatingComponent } from './Event-organiser/ticket/seating/seating.component';
+import { AdminHomepageComponent } from './Admin/admin-homepage/admin-homepage.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SeatingComponent } from './Event-organiser/ticket/seating/seating.compo
     RegisteredEventOrganisersComponent,
     PageOneComponent,
     PasswordComponent,
-    SeatingComponent
+    SeatingComponent,
+    AdminHomepageComponent
   ],
   imports: [
     BrowserModule,

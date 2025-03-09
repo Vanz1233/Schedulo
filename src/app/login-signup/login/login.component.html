@@ -1,31 +1,56 @@
-<div class="login-container">
-  <div class="login-box">
-    <div class="logo">
-      <img src="assets/logo.png" alt="Schedulo Logo" class="logo-img" />
-      <h1 class="app-name">SCHEDULO</h1>
-    </div>
-    <h2 class="login-title">LOGIN</h2>
-
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <div class="input-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" formControlName="email" placeholder="Enter your email" />
-        <div class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-          {{ getErrorMessage('email') }}
-        </div>
+<body>
+  <div class="login-container">
+      <!-- Logo Section -->
+      <div class="logo d-flex align-items-center justify-content-center mb-3">
+          <br>
+          <br>
+          <img src="assets/Schedulo-Logo-White.png" alt="Schedulo Logo" class="logo-img">
       </div>
 
-      <div class="input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" formControlName="password" placeholder="Enter your password" />
-        <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-          {{ getErrorMessage('password') }}
-        </div>
+      <div class="login-box">
+          <h2 class="login-title">LOGIN</h2>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+              <!-- Email Field -->
+              <div class="mb-3 text-start">
+                  <label for="email" class="form-label"><strong>Email</strong></label>
+                  <input 
+                      type="email" 
+                      id="email" 
+                      formControlName="email" 
+                      class="form-control" 
+                      placeholder="Enter your email" 
+                      autocomplete="email" 
+                      aria-describedby="emailError">
+                  <div class="text-danger small" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" id="emailError">
+                      {{ getErrorMessage('email') }}
+                  </div>
+              </div>
+
+              <!-- Password Field -->
+              <div class="mb-3 text-start">
+                  <label for="password" class="form-label"><strong>Password</strong></label>
+                  <input 
+                      type="password" 
+                      id="password" 
+                      formControlName="password" 
+                      class="form-control" 
+                      placeholder="Enter your password" 
+                      autocomplete="current-password" 
+                      aria-describedby="passwordError">
+                  <div class="text-danger small" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" id="passwordError">
+                      {{ getErrorMessage('password') }}
+                  </div>
+              </div>
+
+              <!-- Signup Link -->
+              <a routerLink="/signup" class="forgot-password">New Account</a>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary login-button w-100" [disabled]="loginForm.invalid">LOG IN</button>
+          </form>
       </div>
-
-      <a routerLink="/signup" class="forgot-password">New Account</a>
-
-      <button type="submit" class="login-button" [disabled]="loginForm.invalid">LOG IN</button>
-    </form>
   </div>
-</div>
+</body>
+
+

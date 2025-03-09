@@ -1,33 +1,41 @@
-<body>
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="assets/schedulo.png" alt="Schedulo Logo">
-            </a>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top bg-light shadow-sm">
+    <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand" href="index.html">
+            <img src="assets/schedulo.png" alt="Schedulo Logo" style="height: 40px;">
+        </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <!-- Navbar Toggler for Mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">EVENTS</a>
-                    </li>
-                </ul>
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto gap-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin_homepage.html">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin_eventorganizer.html">EVENT ORGANIZERS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">REPORT</a>
+                </li>
+            </ul>
 
-                <div class="d-flex">
-                    <a href="#" class="btn btn-login me-2">Log In</a>
-                    <a href="#" class="btn btn-signup">Sign Up</a>
-                </div>
+            <!-- Admin Profile -->
+            <div class="d-flex align-items-center">
+                <i class="fa-solid fa-user-circle fa-lg me-2"></i>
+                <span class="fw-bold">Event organizer</span>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
+<body>
     <div class="seating-layout">
         <div class="stage">Stage</div>
 
@@ -74,14 +82,25 @@
                 </select>
             </div>
         </div>
-
         <div class="control-room">Control Room</div>
-
-        <button (click)="confirmSeating()" class="btn btn-primary mt-3">Confirm & Next</button>
+        <button (click)="confirmSeating()" class="btn-next">Confirm & Next</button>
     </div>
 </body>
 
-
+<!-- Footer -->
+<footer class="py-3 mt-5 bg-light border-top">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <img src="assets/schedulo.png" alt="Logo" style="width: 80px; height: auto;">
+            <span class="ms-2">&copy; 2025 Schedulo. All rights reserved.</span>
+        </div>
+        <div class="d-flex">
+            <a href="#" class="footer-link mx-2 text-decoration-none">Terms and Conditions</a>
+            <a href="#" class="footer-link mx-2 text-decoration-none">Privacy Policy</a>
+            <a href="#" class="footer-link mx-2 text-decoration-none">Contact Us</a>
+        </div>
+    </div>
+</footer>
 
 
 
