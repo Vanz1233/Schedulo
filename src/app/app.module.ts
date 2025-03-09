@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisteredEventOrganisersComponent } from './Admin/registered-event-organisers/registered-event-organisers.component';
 import { PageOneComponent } from './Event-organiser/ticket/page-one/page-one.component';
 import { PasswordComponent } from './password/password.component';
+import { SeatingComponent } from './Event-organiser/ticket/seating/seating.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PasswordComponent } from './password/password.component';
     SignupComponent,
     RegisteredEventOrganisersComponent,
     PageOneComponent,
-    PasswordComponent
+    PasswordComponent,
+    SeatingComponent
   ],
   imports: [
     BrowserModule,

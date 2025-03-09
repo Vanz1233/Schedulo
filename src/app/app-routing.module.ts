@@ -6,6 +6,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AuthGuard } from './auth.guard';
 import { PasswordComponent } from './password/password.component';  
 import { CreateEventOrganiserComponent } from './Admin/create-event-organiser/create-event-organiser.component';
+import { SeatingComponent } from './Event-organiser/ticket/seating/seating.component';
+import { PageOneComponent } from './Event-organiser/ticket/page-one/page-one.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'homepage', component: HomepageComponent, canActivate: [AuthGuard] },
   {path: 'password', component: PasswordComponent},
   {path: 'create-event-organiser', component: CreateEventOrganiserComponent},
-  { path: '', redirectTo: '/create-event-organiser', pathMatch: 'full' }
+  {path: 'page-one', component: PageOneComponent},
+  {path: 'seating',component: SeatingComponent},
+  { path: '', redirectTo: '/page-one', pathMatch: 'full' }
 ];
 
 @NgModule({
