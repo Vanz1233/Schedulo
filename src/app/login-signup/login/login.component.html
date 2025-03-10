@@ -47,7 +47,13 @@
               <a routerLink="/signup" class="forgot-password">New Account</a>
 
               <!-- Submit Button -->
-              <button type="submit" class="btn btn-primary login-button w-100" [disabled]="loginForm.invalid">LOG IN</button>
+              <button 
+  type="button" 
+  class="btn btn-primary login-button w-100"
+  (click)="goToHome()"> 
+  LOG IN
+</button>
+
           </form>
       </div>
   </div>

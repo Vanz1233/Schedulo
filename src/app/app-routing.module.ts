@@ -8,6 +8,8 @@ import { PasswordComponent } from './password/password.component';
 import { CreateEventOrganiserComponent } from './Admin/create-event-organiser/create-event-organiser.component';
 import { SeatingComponent } from './Event-organiser/ticket/seating/seating.component';
 import { PageOneComponent } from './Event-organiser/ticket/page-one/page-one.component';
+import { AdminHomepageComponent } from './Admin/admin-homepage/admin-homepage.component';
+import { RegisteredEventOrganisersComponent } from './Admin/registered-event-organisers/registered-event-organisers.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path: 'create-event-organiser', component: CreateEventOrganiserComponent},
   {path: 'page-one', component: PageOneComponent},
   {path: 'seating',component: SeatingComponent},
-  { path: '', redirectTo: '/create-event-organiser', pathMatch: 'full' }
+  {path: 'admin-homepage', component: AdminHomepageComponent},  
+  {path: 'registered-event-organisers', component: RegisteredEventOrganisersComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

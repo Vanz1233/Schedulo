@@ -55,6 +55,9 @@ export class LoginComponent {
     if (field === 'password' && control?.hasError('minlength')) return 'Password must be at least 6 characters';
     return '';
   }
+  goToHome() {
+    this.router.navigate(['/admin-homepage']); // ✅ Public method to navigate
+  }
 }
 
 
