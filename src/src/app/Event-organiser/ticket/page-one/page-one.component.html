@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SCHEDULO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/events">Events</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/organizers">Organizers</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/report">Report</a></li>
+            </ul>
+        </div>
+        <div class="admin-section">
+            <span>👤 Admin</span>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="title">TITLE</h2>
+    <p class="subtitle">DATE & TIME</p>
+
+    <h3 class="section-title">Create your ticket types:</h3>
+    <form (ngSubmit)="submitForm()" #ticketForm="ngForm">
+        <div *ngFor="let ticket of tickets; let i = index" class="ticket-row">
+            <label>Ticket {{ i + 1 }}:</label>
+            <input type="text" [(ngModel)]="ticket.type" name="ticketType{{i}}" required>
+            <label>Price:</label>
+            <input type="number" [(ngModel)]="ticket.price" name="ticketPrice{{i}}" required>
+        </div>
+
+        <h3 class="section-title">Promotional Code (Optional)</h3>
+        <label>Promotion Code:</label>
+        <input type="text" [(ngModel)]="promotionCode" name="promotionCode">
+
+        <label>Discount Percentage:</label>
+        <input type="number" [(ngModel)]="discountPercentage" name="discountPercentage">
+
+        <label>Applicable Ticket Type:</label>
+        <select [(ngModel)]="applicableTicketType" name="applicableTicketType">
+            <option *ngFor="let ticket of tickets" [value]="ticket.type">{{ ticket.type }}</option>
+        </select>
+
+        <div class="buttons">
+            <button type="button" (click)="clearForm()" class="btn btn-secondary">Clear</button>
+            <button type="submit" class="btn btn-primary">Next</button>
+        </div>
+    </form>
+</div>
+
+

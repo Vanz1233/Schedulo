@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="event-creation.component.css">
+</head>
+<body>
+    <!-- Navigation Bar-->
+    <nav class="navbar">
+        <div class="navdiv">
+            <!-- Schedulo Logo -->
+            <div class="logo">SCHEDULO</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Ticket</a></li>
+                <li><a href="#">Report</a></li>
+            </ul>
+            <div class="profile">Profile</div>
+        </div>
+    </nav>
+
+    <!-- Event Form -->
+    <form action="#">
+        <div class="event_form">
+            <div class="form_sec1">
+                <div>
+                    <label for="title1">Title 1*</label><br>
+                    <label for="title1_desc">Type the Title of the Event</label><br>
+                    <input type="text" id="title1" name="title1" required><br>
+
+                    <label for="maintitle">Main Title*</label><br>
+                    <label for="maintitle_desc">Type the Main Title of the Event</label><br>
+                    <input type="text" id="maintitle" name=" maintitle" required><br>
+
+                    <label for="short_desc">Short Description</label><br>
+                    <label for="shortdesc_desc">Type the Description of the Event (Optional)</label><br>
+                    <input type="text" id="short_desc" name="short_desc">
+                </div>  
+                <div>
+                    <label for="event_banner">Event Banner*</label><br>
+                    <label for="eventbanner_desc">Upload an image for your event</label><br>
+                    <div id="banner_upload">
+                        <p><b>Click to upload</b> or drag and drop</p>
+                        <input type="file" accept="image/*" id="banner_image" hidden>
+                    </div>
+                </div>
+            </div>
+            <div class="form_sec2">
+                <p>EVENT DETAILS</p>
+                <div>
+                    <div class="event_detail">
+                        <label for="Event_Name">Event Name </label>
+                        <input type="text" id="event_name" name="event_name">
+                    </div>
+                    <div class="event_detail">
+                        <label for="Event_Desc">Event Description </label>
+                        <input type="text" id="event_desc" name="event_desc">
+                    </div>
+                    <div class="event_detail">
+                        <label for="Date">Event Date</label>
+                        <input type="date" id="event_date" name="event_date">
+                    </div>
+                    <div class="event_detail">
+                        <label for="Time">Event Time</label>
+                        <div class="event_time">
+                            <input type="time" id="start_time" name="start_time"> <label> ----- </label> <input type="time" id="end_time" name="end_time">
+                        </div>
+                    </div>
+                    <div class="event_detail">
+                        <label for="Poster">Event Poster</label>
+                        <div id="poster_upload">
+                            <p><b>Click to upload</b> or drag and drop</p>
+                            <input type="file" accept="image/*" id="poster_image" hidden>
+                        </div>
+                    </div>
+            </div>
+            <input type="submit" value="Create Event" id="create_button">
+        </div>
+    </form>
+    
+    <script src="event-creation.componet.js"></script>
+    <script>
+        document.getElementById('eventForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+        
+            const formData = {
+                title1: document.getElementById('title1').value,
+                maintitle: document.getElementById('maintitle').value,
+                short_desc: document.getElementById('short_desc').value,
+                event_name: document.getElementById('event_name').value,
+                event_desc: document.getElementById('event_desc').value,
+                event_date: document.getElementById('event_date').value,
+                start_time: document.getElementById('start_time').value,
+                end_time: document.getElementById('end_time').value
+            };
+        
+            const response = await fetch('http://localhost:3000/create-event', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+        
+            const result = await response.json();
+            alert(result.message);
+        });
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                let file = files[0];
+
+                // Show preview
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function (e) {
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
+                };
+
+                // Upload to server
+                let formData = new FormData();
+                formData.append('image', file);
+
+                fetch('http://localhost:3000/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log('File uploaded:', data.filePath);
+                })
+                .catch(err => console.error('Upload failed', err));
+            }
+        }
+    </script>
+        
+</body>
+</html>

@@ -1,1 +1,88 @@
-<p>event-creation works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="event-creation.component.css">
+</head>
+<body>
+    <!-- Navigation Bar-->
+    <nav class="navbar">
+        <div class="navdiv">
+            <!-- Schedulo Logo -->
+            <div class="logo">SCHEDULO</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Ticket</a></li>
+                <li><a href="#">Report</a></li>
+            </ul>
+            <div class="profile">Profile</div>
+        </div>
+    </nav>
+
+    <!-- Event Form -->
+    <form action="#" id="eventForm">
+        <div class="event_form">
+            <div class="form_sec1">
+                <div>
+                    <label for="title1">Title 1*</label><br>
+                    <label for="title1_desc">Type the Title of the Event</label><br>
+                    <input type="text" id="title1" name="title1" required><br>
+
+                    <label for="maintitle">Main Title*</label><br>
+                    <label for="maintitle_desc">Type the Main Title of the Event</label><br>
+                    <input type="text" id="maintitle" name="maintitle" required><br>
+
+                    <label for="short_desc">Short Description</label><br>
+                    <label for="shortdesc_desc">Type the Description of the Event (Optional)</label><br>
+                    <input type="text" id="short_desc" name="short_desc">
+                </div>  
+                <div>
+                    <label for="event_banner">Event Banner*</label><br>
+                    <label for="eventbanner_desc">Upload an image for your event</label><br>
+                    <div id="drop-area-banner">
+                        <p><b>Click to upload</b> or drag and drop</p>
+                        <input type="file">
+                    </div>
+                    <div id="preview-banner"></div>
+                </div>
+            </div>
+            <div class="form_sec2">
+                <p>EVENT DETAILS</p>
+                <div>
+                    <div class="event_detail">
+                        <label for="Event_Name">Event Name </label>
+                        <input type="text" id="event_name" name="event_name">
+                    </div>
+                    <div class="event_detail">
+                        <label for="Event_Desc">Event Description </label>
+                        <input type="text" id="event_desc" name="event_desc">
+                    </div>
+                    <div class="event_detail">
+                        <label for="Date">Event Date</label>
+                        <input type="date" id="event_date" name="event_date">
+                    </div>
+                    <div class="event_detail">
+                        <label for="Time">Event Time</label>
+                        <div class="event_time">
+                            <input type="time" id="start_time" name="start_time">   -----   <input type="time" id="end_time" name="end_time">
+                        </div>
+                    </div>
+                    <div class="event_detail">
+                        <label for="Poster">Event Poster</label>
+                        <div id="drop-area-poster">
+                            <p><b>Click to upload</b> or drag and drop</p>
+                            <input type="file">
+                        </div>
+                        <div id="preview-poster"></div>
+                    </div>
+            </div>
+            <input type="submit" value="Create Event" id="create_button">
+        </div>
+    </form>
+    
+    <script src="event-creation.component.js"></script>
+</body>
+</html>

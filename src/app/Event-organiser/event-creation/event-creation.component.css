@@ -1,0 +1,126 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #004080;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.navdiv ul {
+    list-style: none;
+    display: flex;
+}
+
+.navdiv ul li {
+    margin: 0 15px;
+}
+
+.navdiv ul li a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navdiv ul li a:hover {
+    text-decoration: underline;
+}
+
+.profile {
+    background-color: white;
+    color: #004080;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Event Form */
+.event_form {
+    width: 60%;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.event_form label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    font-size: 14px;
+}
+
+.event_form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* File Upload Areas */
+#drop-area-banner, #drop-area-poster {
+    width: 100%;
+    height: 180px;
+    border: 2px dashed #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #e9f3ff;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+#drop-area-banner:hover, #drop-area-poster:hover {
+    background-color: #d0e5ff;
+}
+
+/* Event Details */
+.form_sec2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.event_detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+/* Submit Button */
+#create_button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#create_button:hover {
+    background-color: #0056b3;
+}
