@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'create-event-organiser', component: CreateEventOrganiserComponent},
   {path: 'page-one', component: PageOneComponent},
   {path: 'seating',component: SeatingComponent},
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/create-event-organiser', pathMatch: 'full' }
 ];
 
 @NgModule({

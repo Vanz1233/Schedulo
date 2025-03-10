@@ -5,7 +5,13 @@ const nodemailer = require('nodemailer');
 
 const router = express.Router();
 
-// ✅ Email sending function
+// ✅ Function to Generate a Random Password
+const generateRandomPassword = (length = 10) => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+    return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+};
+
+// ✅ Email Sending Function
 const sendConfirmationEmail = async (email, fullName, plainPassword) => {
     const resetPasswordLink = `http://localhost:4200/password?email=${encodeURIComponent(email)}`;
     const loginLink = 'http://localhost:4200/login';
@@ -59,7 +65,7 @@ const sendConfirmationEmail = async (email, fullName, plainPassword) => {
 // ✅ Register Event Organizer Route
 router.post('/register-organizer', async (req, res) => {
     try {
-        const { organizerName, fullName, email, phone, username, password } = req.body;
+        const { organizerName, fullName, email, phone, username } = req.body;
         const lowerEmail = email.toLowerCase().trim();
 
         const existingOrganizer = await EventOrganizer.findOne({ 
@@ -70,10 +76,13 @@ router.post('/register-organizer', async (req, res) => {
             return res.status(400).json({ error: 'Organizer with this email or username already exists' });
         }
 
-        // Hash Password
-        const hashedPassword = await bcrypt.hash(password, 10);
+        // ✅ Generate Random Password
+        const plainPassword = generateRandomPassword();
 
-        // Save New Event Organizer
+        // ✅ Hash Password Before Storing
+        const hashedPassword = await bcrypt.hash(plainPassword, 10);
+
+        // ✅ Save New Event Organizer
         const newOrganizer = new EventOrganizer({
             organizerName,
             fullName,
@@ -85,8 +94,8 @@ router.post('/register-organizer', async (req, res) => {
 
         await newOrganizer.save();
 
-        // Send confirmation email with plain password
-        await sendConfirmationEmail(lowerEmail, fullName, password);
+        // ✅ Send Confirmation Email with Plain Password
+        await sendConfirmationEmail(lowerEmail, fullName, plainPassword);
 
         res.status(201).json({ message: 'Event Organizer registered successfully and confirmation email sent!' });
     } catch (error) {
@@ -111,13 +120,13 @@ router.post('/change-password', async (req, res) => {
             return res.status(404).json({ error: 'Organizer not found' });
         }
 
-        // Verify current password
+        // ✅ Verify current password (which was initially sent via email)
         const passwordMatch = await bcrypt.compare(currentPassword, organizer.password);
         if (!passwordMatch) {
             return res.status(401).json({ error: 'Incorrect current password' });
         }
 
-        // Hash new password and update
+        // ✅ Hash new password and update
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         organizer.password = hashedPassword;
         await organizer.save();
@@ -129,18 +138,9 @@ router.post('/change-password', async (req, res) => {
     }
 });
 
-// ✅ Get All Registered Organizers
-router.get('/registered-organizers', async (req, res) => {
-    try {
-        const organizers = await EventOrganizer.find({}, '-password');
-        res.status(200).json(organizers);
-    } catch (error) {
-        console.error("❌ Error fetching organizers:", error);
-        res.status(500).json({ error: "Internal server error", details: error.message });
-    }
-});
-
 module.exports = router;
+
+
 
 
 
