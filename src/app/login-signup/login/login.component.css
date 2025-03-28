@@ -1,5 +1,6 @@
 /* General page styling */
 body {
+  background-image: url('/assets/login_signup.png');
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
     display: flex;

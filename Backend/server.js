@@ -11,7 +11,7 @@ const app = express();
 
 // ✅ Validate Environment Variables
 const requiredEnvVars = ['JWT_SECRET', 'MONGO_URI', 'EMAIL_USER', 'EMAIL_PASS'];
-let missingEnvVars = requiredEnvVars.filter((key) => !process.env[key]);
+const missingEnvVars = requiredEnvVars.filter((key) => !process.env[key]);
 
 if (missingEnvVars.length > 0) {
   console.error(`❌ Missing environment variables: ${missingEnvVars.join(', ')}`);
@@ -24,6 +24,13 @@ if (missingEnvVars.length > 0) {
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+// ✅ Debugging: Log incoming requests
+app.use((req, res, next) => {
+  console.log(`📥 ${req.method} ${req.url}`, req.body);
+  next();
+});
 
 // ✅ MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
@@ -38,7 +45,19 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // ✅ Load Routes
 app.use('/api', eventOrganizerRoutes); 
-app.use('/api/tickets', ticketRoutes);
+app.use('/api', ticketRoutes);
+
+// ✅ Add New Route for Fetching Ticket Sections
+app.get('/api/ticket-sections', async (req, res) => {
+  try {
+    // Fetch distinct seating sections from tickets
+    const sections = await Ticket.distinct('tickets.section');
+    res.status(200).json({ sections });
+  } catch (error) {
+    console.error('❌ Error Fetching Ticket Sections:', error);
+    res.status(500).json({ error: 'Failed to fetch ticket sections' });
+  }
+});
 
 // ✅ Debug Registered Routes (Only in Development)
 if (process.env.NODE_ENV === 'development') {
@@ -48,7 +67,7 @@ if (process.env.NODE_ENV === 'development') {
     .forEach(r => console.log(`➡️ ${r.route.path}`));
 }
 
-// ✅ Nodemailer Debugging
+// ✅ Nodemailer Setup
 const transporter = nodemailer.createTransport({
   service: 'gmail',  // Or use another email service
   auth: {
@@ -69,6 +88,7 @@ transporter.verify((error, success) => {
 // ✅ Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+
 
 
 
