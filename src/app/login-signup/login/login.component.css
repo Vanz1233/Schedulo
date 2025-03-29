@@ -1,112 +1,162 @@
 /* General page styling */
 body {
   background-image: url('/assets/login_signup.png');
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
-  /* Centering the login box */
-  .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-  }
-  
-  /* Login box */
-  .login-box {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 350px;
-  }
-  
-  /* Logo and Title */
-  .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 15px;
-  }
-  
-  .logo-img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-  }
-  
-  .app-name {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .login-title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  /* Input fields */
-  .input-group {
-    text-align: left;
-    margin-bottom: 15px;
-  }
-  
-  .input-group label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .input-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    outline: none;
-  }
-  
-  .input-group input:focus {
-    border-color: #007bff;
-  }
-  
-  /* Forgot password */
-  .forgot-password {
-    display: block;
-    text-align: left;
-    font-size: 12px;
-    margin-bottom: 20px;
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .forgot-password:hover {
-    text-decoration: underline;
-  }
-  
-  /* Login button */
-  .login-button {
-    width: 100%;
-    padding: 10px;
-    background: #007bff;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .login-button:hover {
-    background: #0056b3;
-  }
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centering the login container */
+.login-container {
+  display: flex;
+  flex-direction: column; /* Stack logo and form vertically */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Logo and Title */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo-img {
+  width: 300px; /* Adjusted size for better fit */
+  height: auto;
+  margin-bottom: 40px;
+}
+
+/* Login Box */
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 550px;
+  padding-bottom: 10px;
+  padding-top: 30px;
+}
+
+/* Login Title */
+.login-title {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2.5em;
+  line-height: 48px;
+  padding-bottom: 10px;
+  color: #5543ca;
+  background: -webkit-linear-gradient(left, #3f7d8e 0%, #446856 100%);
+  background: linear-gradient(to right, #6a8db3 0%, #23a83d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Input Fields */
+.input-group {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+}
+
+/* Signup Link */
+.forgot-password {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Submit Button */
+.login-button {
+  display: inline-block;
+  background-color: #000;
+  background-image: linear-gradient(125deg, #582354, #2e4134);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  border-radius: 5px;
+}
+
+.login-button:hover {
+  background-image: linear-gradient(125deg, #064497, #a72879);
+}
+
+/* Input Field Styling */
+.form-control {
+  display: block;
+  width: 100%;
+  height: 36px;
+  border-width: 0 0 2px 0;
+  border-color: #5543ca;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #a72879;
+}
+
+.form-control::placeholder {
+  font-size: 13px; /* Adjusted placeholder size */
+  color: #bababa; /* Optional: Change placeholder color */
+  font-style: italic;
+}
+
+.no-account-text {
+  font-weight: bold;
+  color: #000000; /* Adjust the color as needed */
+  font-size: 16px;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Space between the button and the signup link */
+}
+
   

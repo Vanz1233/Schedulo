@@ -138,6 +138,16 @@ router.post('/change-password', async (req, res) => {
     }
 });
 
+router.get('/registered-organizers', async (req, res) => {
+    try {
+        const organizers = await EventOrganizer.find({}, '-password'); // Exclude passwords
+        res.status(200).json(organizers);
+    } catch (error) {
+        console.error('❌ Error fetching organizers:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
 module.exports = router;
 
 
