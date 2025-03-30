@@ -18,7 +18,7 @@
                         id="email" 
                         formControlName="email" 
                         class="form-control" 
-                        placeholder="e.g. JohnDoe@email.com" 
+                        placeholder="e.g. johndoe@email.com" 
                         autocomplete="email" 
                         aria-describedby="emailError">
                     <div class="text-danger small" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" id="emailError">
@@ -41,6 +41,11 @@
                         {{ getErrorMessage('password') }}
                     </div>
                 </div>
+
+                <!-- Error Message Display -->
+                <div class="text-danger text-center small" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                </div>
                 
                 <!-- Submit Button -->
                 <button 
@@ -53,11 +58,13 @@
                 <div class="text-start signup-container">
                     <p><span class="no-account-text">No account? </span>
                         <a routerLink="/signup" class="signup-link">Signup here</a>
+                    </p>
                 </div>
             </form>
         </div>
     </div>
-  </body>
+</body>
+
   
 
 

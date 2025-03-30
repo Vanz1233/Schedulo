@@ -7,6 +7,8 @@ const nodemailer = require('nodemailer');
 const eventOrganizerRoutes = require('./routes/eventOrganiser'); 
 const ticketRoutes = require('./routes/ticketRoutes');
 
+const authRoutes = require('./routes/authRoutes'); // ✅ Import the auth routes
+
 const app = express();
 
 // ✅ Validate Environment Variables
@@ -46,6 +48,7 @@ mongoose.connect(process.env.MONGO_URI, {
 // ✅ Load Routes
 app.use('/api', eventOrganizerRoutes); 
 app.use('/api', ticketRoutes);
+app.use('/api/auth', authRoutes); // ✅ Use the auth routes under '/api/auth'
 
 // ✅ Add New Route for Fetching Ticket Sections
 app.get('/api/ticket-sections', async (req, res) => {

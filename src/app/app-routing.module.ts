@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'admin-homepage', component: AdminHomepageComponent},  
   {path: 'registered-event-organisers', component: RegisteredEventOrganisersComponent},
   {path: 'ticket-page', component: TicketPageComponent},
-  { path: '', redirectTo: 'create-event-organiser', pathMatch: 'full' }
+  { path: '', redirectTo: 'homepage', pathMatch: 'full' }
 ];
 
 @NgModule({

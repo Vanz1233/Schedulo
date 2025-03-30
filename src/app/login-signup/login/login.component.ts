@@ -20,20 +20,29 @@ export class LoginComponent {
     private authService: AuthService // Inject AuthService
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]], // ✅ Using email instead of username
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  onLogin() { // Function to handle login form submission
+  onLogin() {
     if (this.loginForm.valid) {
-      this.http.post<{ token: string }>('http://localhost:3000/api/login', this.loginForm.value)
+      this.http.post<{ token: string; role: string }>('http://localhost:3000/api/auth/login', this.loginForm.value)
         .subscribe({
           next: (response) => {
             if (response?.token) {
-              this.authService.setToken(response.token); // Store token using AuthService
-              alert('Login successful! Redirecting to homepage...');
-              this.router.navigate(['/home']); // Redirect to homepage
+              this.authService.setToken(response.token); // Store token
+
+              // Redirect based on role
+              if (response.role === 'admin') {
+                alert('Admin login successful! Redirecting...');
+                this.router.navigate(['/admin-homepage']);
+              } else if (response.role === 'event-organiser') {
+                alert('Event organiser login successful! Redirecting...');
+                this.router.navigate(['/event-organiser-homepage']);
+              } else {
+                this.errorMessage = 'Unknown role. Cannot proceed.';
+              }
             } else {
               this.errorMessage = 'Invalid response from server. No token received.';
             }
@@ -44,7 +53,7 @@ export class LoginComponent {
           }
         });
     } else {
-      this.errorMessage = 'Please fill out the form correctly before submitting.';
+      this.errorMessage = 'Please enter a valid email and password.';
     }
   }
 
@@ -55,10 +64,8 @@ export class LoginComponent {
     if (field === 'password' && control?.hasError('minlength')) return 'Password must be at least 6 characters';
     return '';
   }
-  goToHome() {
-    this.router.navigate(['/admin-homepage']); // ✅ Public method to navigate
-  }
 }
+
 
 
 
