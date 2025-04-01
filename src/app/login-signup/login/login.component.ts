@@ -35,16 +35,16 @@ export class LoginComponent {
 
               // Redirect based on role
               if (response.role === 'admin') {
-                alert('Admin login successful! Redirecting...');
+                alert('Login succesful!');
                 this.router.navigate(['/admin-homepage']);
               } else if (response.role === 'event-organiser') {
-                alert('Event organiser login successful! Redirecting...');
+                alert('Login Successful!');
                 this.router.navigate(['/event-organiser-homepage']);
               } else {
-                this.errorMessage = 'Unknown role. Cannot proceed.';
+                this.errorMessage = 'Unkown Schedulo Role.';
               }
             } else {
-              this.errorMessage = 'Invalid response from server. No token received.';
+              this.errorMessage = 'Invalid response from server. Please try again.';
             }
           },
           error: (err) => {
