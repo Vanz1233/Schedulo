@@ -11,8 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisteredEventOrganisersComponent } from './Admin/registered-event-organisers/registered-event-organisers.component';
 import { PasswordComponent } from './password/password.component';
 import { AdminHomepageComponent } from './Admin/admin-homepage/admin-homepage.component';
-import { TicketBookingComponent } from './Attendees/ticket-booking/ticket-booking.component';
 import { TicketPageComponent } from './Event-organiser/ticket-page/ticket-page.component';
+import { SelectSectionComponent } from './attendees/select-section/select-section.component';
+import { B1Component } from './attendees/b1/b1.component';
+import { B2Component } from './attendees/b2/b2.component';
+import { B3Component } from './attendees/b3/b3.component';
+import { Lf1Component } from './attendees/lf1/lf1.component';
+import { Lf2Component } from './attendees/lf2/lf2.component';
+import { Lf3Component } from './attendees/lf3/lf3.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +30,14 @@ import { TicketPageComponent } from './Event-organiser/ticket-page/ticket-page.c
     RegisteredEventOrganisersComponent,
     PasswordComponent,
     AdminHomepageComponent,
-    TicketBookingComponent,
-    TicketPageComponent
+    TicketPageComponent,
+    SelectSectionComponent,
+    B1Component,
+    B2Component,
+    B3Component,
+    Lf1Component,
+    Lf2Component,
+    Lf3Component
   ],
   imports: [
     BrowserModule,

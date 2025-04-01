@@ -1,0 +1,32 @@
+<h2 class="seating-ticket-title text-center fw-bold mt-5">TITLE</h2>
+<p class="seating-ticket-subtitle text-center fw-bold">DATE & TIME</p>
+
+<div class="seating-layout">
+    <div class="stage">Stage</div>
+
+    <div class="row-section">
+        <div class="section section-lf3" (click)="selectSection('LF3')">Section LF3</div>
+        <div class="section section-lf2" (click)="selectSection('LF2')">Section LF2</div>
+        <div class="section section-lf1" (click)="selectSection('LF1')">Section LF1</div>
+    </div>
+
+    <br>
+
+    <div class="row-section">
+        <div class="section section-b3" (click)="selectSection('B3')">Section B3</div>
+        <div class="section section-b2" (click)="selectSection('B2')">Section B2</div>
+        <div class="section section-b1" (click)="selectSection('B1')">Section B1</div>
+    </div>
+
+    <br>
+
+    <div class="container">
+        <div class="ticket-form2">
+            <h4 class="title">Selected Section: <strong>{{ selectedSection || 'None Selected' }}</strong></h4>
+            <hr class="divider">
+            <button type="button" (click)="proceed()" class="btn proceed1-btn" [disabled]="">
+                Proceed
+            </button>
+        </div>
+    </div>
+</div>
