@@ -10,9 +10,8 @@ const ticketSchema = new mongoose.Schema({
       maxTickets: { type: Number, required: true, min: 1 }
     }
   ],
+  seatingAssignments: { type: Object, default: {} }, // ✅ Add seating assignments
 }, { timestamps: true });
 
 module.exports = mongoose.model('Ticket', ticketSchema);
-
-
 

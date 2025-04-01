@@ -22,6 +22,10 @@ export class HomepageComponent {
     this.isLoggedIn = !!localStorage.getItem('token');
   }
 
+  goToLogin(): void {
+    this.router.navigate(['login']);
+  }
+
   logout() {
     localStorage.removeItem('token'); // Clear token
     this.isLoggedIn = false;
