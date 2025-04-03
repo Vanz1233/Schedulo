@@ -46,7 +46,7 @@
             
             <div class="detail-row">
                 <div class="detail-label">Ticket Type:</div>
-                <div class="detail-value">[Ticket Type will be displayed here]</div>
+                <div class="detail-value">{{ ticketData.type }}</div>
             </div>
 
             <div class="detail-row">
@@ -70,24 +70,24 @@
         <div class="ticket-details">
             <div class="detail-row">
                 <div class="detail-label">Ticket(s) Price:</div>
-                <div class="detail-value">[Ticket Price will be displayed here]</div>
+                <div class="detail-value">{{ ticketData.price }}</div>
             </div>
 
             <div class="detail-row">
                 <div class="detail-label">Promo Code:</div>
-                <div class="detail-value">[Promo Code will be displayed here]</div>
+                <div class="detail-value">{{ ticketData.promoCode }}</div>
             </div>
             
             <div class="detail-row">
-                <div class="detail-label">Discount Price:</div>
-                <div class="detail-value">[Discount Price will be displayed here]</div>
+                <div class="detail-label">Discount:</div>
+                <div class="detail-value">{{discountedPrice}}</div>
             </div>
             
             <br>
 
             <div class="detail-row">
                 <div class="detail-label" style="font-size: 18px; font-weight: bold;">TOTAL PRICE:</div>
-                <div class="detail-value">[TOTAL PRICE will be displayed here]</div>
+                <div class="detail-value">{{totalPrice}}</div>
             </div>
         </div>
 

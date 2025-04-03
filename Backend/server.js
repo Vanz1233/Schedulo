@@ -3,10 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const Ticket = require('./models/newTicket'); // ✅ Import the Ticket model
 
 const eventOrganizerRoutes = require('./routes/eventOrganiser'); 
 const ticketRoutes = require('./routes/ticketRoutes');
-
 const authRoutes = require('./routes/authRoutes'); // ✅ Import the auth routes
 
 const app = express();
@@ -88,9 +88,12 @@ transporter.verify((error, success) => {
   }
 });
 
+
+
 // ✅ Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+
 
 
 
