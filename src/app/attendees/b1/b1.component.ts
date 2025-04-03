@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-b1',
@@ -12,6 +13,8 @@ export class B1Component implements OnInit {
     maxSeats = 6;
     rowLabels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     seatsInEachRow = [14, 14, 14, 13, 12]; // Number of seats in each row
+
+    constructor(private router: Router) {}
 
     ngOnInit() {
         this.initializeSeats();
@@ -76,7 +79,15 @@ export class B1Component implements OnInit {
 
     proceedSelection() {
         if (this.selectedSeats.length > 0) {
-            alert("You have selected seats: " + this.selectedSeats.join(", "));
+            // Navigate to payment page with selected seats and section as query params
+            this.router.navigate(['/payment-1'], { 
+                queryParams: { 
+                    section: 'b1', 
+                    seats: JSON.stringify(this.selectedSeats) 
+                }
+            });
+        } else {
+            alert("Please select at least one seat.");
         }
     }
 }

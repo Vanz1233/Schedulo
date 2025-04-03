@@ -19,6 +19,10 @@ import { B3Component } from './attendees/b3/b3.component';
 import { Lf1Component } from './attendees/lf1/lf1.component';
 import { Lf2Component } from './attendees/lf2/lf2.component';
 import { Lf3Component } from './attendees/lf3/lf3.component';
+import { Payment1Component } from './payment/payment-1/payment-1.component';
+import { Payment2Component } from './payment/payment-2/payment-2.component';
+import { Payment3Component } from './payment/payment-3/payment-3.component';
+import { Payment4Component } from './payment/payment-4/payment-4.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { Lf3Component } from './attendees/lf3/lf3.component';
     B3Component,
     Lf1Component,
     Lf2Component,
-    Lf3Component
+    Lf3Component,
+    Payment1Component,
+    Payment2Component,
+    Payment3Component,
+    Payment4Component
   ],
   imports: [
     BrowserModule,

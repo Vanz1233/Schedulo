@@ -6,7 +6,8 @@ const TicketSchema = new mongoose.Schema({
             section: { type: String, required: true },
             price: { type: Number, required: true }
         }
-    ]
+    ],
+    promoCode: { type: String, default: '' }
 });
 
 module.exports = mongoose.model('Ticket', TicketSchema);

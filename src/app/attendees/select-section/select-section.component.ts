@@ -17,7 +17,7 @@ export class SelectSectionComponent {
 
   proceed(): void {
     if (this.selectedSection) {
-      this.router.navigate([`/sections/${this.selectedSection}`]); // Navigate to the selected section page
+      this.router.navigate([`/${this.selectedSection.toLowerCase()}`]); // Navigate to the selected section page
     } else {
       alert("Please select a section before proceeding.");
     }

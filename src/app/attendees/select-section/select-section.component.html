@@ -24,7 +24,7 @@
         <div class="ticket-form2">
             <h4 class="title">Selected Section: <strong>{{ selectedSection || 'None Selected' }}</strong></h4>
             <hr class="divider">
-            <button type="button" (click)="proceed()" class="btn proceed1-btn" [disabled]="">
+            <button type="button" (click)="proceed()" class="btn proceed1-btn" [disabled]="!selectedSection">
                 Proceed
             </button>
         </div>

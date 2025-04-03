@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-ticket-page',
   templateUrl: './ticket-page.component.html',
-  styleUrls: ['./ticket-page.component.css'] // ✅ Fixed typo
+  styleUrls: ['./ticket-page.component.css']
 })
 export class TicketPageComponent {
   eventTitle: string = "Event Title";
@@ -15,13 +15,13 @@ export class TicketPageComponent {
 
   tickets: { section: string; type: string; price: number }[] = [{ section: '', type: '', price: 0 }];
 
-  constructor(private http: HttpClient) {} // ✅ Inject HttpClient for API calls
+  promoCode: string = ""; // ✅ Separate from tickets
+  discount: number = 0; // ✅ Global discount percentage
 
-  // ✅ Select section and auto-assign to last added ticket
+  constructor(private http: HttpClient) {}
+
   selectSection(section: string) {
     this.selectedSection = this.selectedSection === section ? null : section;
-    
-    // Assign section to the last added ticket if it's not set
     if (this.tickets.length > 0) {
       this.tickets[this.tickets.length - 1].section = section;
     }
@@ -38,6 +38,19 @@ export class TicketPageComponent {
   clearForm() {
     this.tickets = [{ section: '', type: '', price: 0 }];
     this.selectedSection = null;
+    this.promoCode = "";
+    this.discount = 0;
+  }
+
+  applyPromoCode() {
+    if (this.promoCode === "DISCOUNT10") {
+      this.discount = 10;
+    } else if (this.promoCode === "DISCOUNT20") {
+      this.discount = 20;
+    } else {
+      this.discount = 0;
+      alert("Invalid promo code.");
+    }
   }
 
   submitForm() {
@@ -55,10 +68,11 @@ export class TicketPageComponent {
     const ticketData = {
       eventTitle: this.eventTitle,
       eventDateTime: this.eventDateTime,
-      tickets: this.tickets
+      tickets: this.tickets,
+      promoCode: this.promoCode,
+      discount: this.discount,
     };
 
-    // ✅ Send data to backend
     this.http.post('http://localhost:3000/api/tickets', ticketData).subscribe(
       response => {
         console.log("✅ Ticket Submission Response:", response);
@@ -72,5 +86,8 @@ export class TicketPageComponent {
     );
   }
 }
+
+
+
 
 

@@ -48,7 +48,7 @@
     
     <div class="seat-wrapper-b1">
         <div class="seatings-container-b1">
-            <div class="seat-row-b1" *ngFor="let row of seatRows; let i = index" style="display: flex; justify-content: center;">
+            <div class="seat-row-b1" *ngFor="let row of seatRows; let i = index" style="display: flex; justify-content: flex-end;">
                 <div class="seat-b1" *ngFor="let seat of row; let j = index" 
                      (click)="toggleSeat(i, j)"
                      [class.available]="!isReserved(i, j)" 

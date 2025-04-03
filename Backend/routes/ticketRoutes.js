@@ -7,7 +7,7 @@ router.post('/tickets', async (req, res) => {
     console.log('🔹 Received Data:', req.body); // Debugging log
 
     try {
-        const { tickets } = req.body;
+        const { tickets, promoCode, discount } = req.body;  // Extract promoCode and discount from request body
 
         // 🔍 Validate incoming request
         if (!tickets || !Array.isArray(tickets)) {
@@ -21,17 +21,21 @@ router.post('/tickets', async (req, res) => {
             }
         }
 
+        // Create new Ticket object, now including promoCode and discount
         const newTicket = new Ticket({
-            tickets
+            tickets,
+            promoCode,  // Include promoCode
+            discount    // Include discount
         });
 
         await newTicket.save();
-        res.status(201).json({ message: '✅ Ticket created successfully' });
+        res.status(201).json({ message: '✅ Ticket created successfully', ticket: newTicket });
     } catch (error) {
         console.error('❌ Ticket Creation Error:', error);
         res.status(500).json({ error: error.message });
     }
 });
+
 
 // 📌 Fetch all tickets
 router.get('/tickets', async (req, res) => {
