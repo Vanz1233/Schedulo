@@ -13,22 +13,44 @@ export class TicketPageComponent {
   sections: string[] = ["LF3", "LF2", "LF1", "B3", "B2", "B1"];
   selectedSection: string | null = null;
 
-  tickets: { section: string; type: string; price: number }[] = [{ section: '', type: '', price: 0 }];
+  tickets: { section: string; type: string; price: number }[] = [
+    { section: '', type: '', price: 0 }
+  ];
 
-  promoCode: string = ""; // ✅ Separate from tickets
-  discount: number = 0; // ✅ Global discount percentage
+  promoCode: string = "";
+  discount: number = 0;
+
+  seatCounts: { [key: string]: number } = {
+    'LF1': 110,
+    'LF2': 200,
+    'LF3': 110,
+    'B1': 66,
+    'B2': 84,
+    'B3': 66
+  };
 
   constructor(private http: HttpClient) {}
 
   selectSection(section: string) {
+    // Toggle selection
     this.selectedSection = this.selectedSection === section ? null : section;
+
+    // Optional: auto-fill the last ticket's section if it’s empty
     if (this.tickets.length > 0) {
       this.tickets[this.tickets.length - 1].section = section;
     }
   }
 
+  get selectedSeats(): number | string {
+    return this.selectedSection ? this.seatCounts[this.selectedSection] : 'XX';
+  }
+
   addTicket() {
-    this.tickets.push({ section: this.selectedSection || '', type: '', price: 0 });
+    this.tickets.push({
+      section: this.selectedSection || '',
+      type: '',
+      price: 0
+    });
   }
 
   removeTicket(index: number) {
@@ -54,13 +76,16 @@ export class TicketPageComponent {
   }
 
   submitForm() {
-    // ✅ Convert price to a number
+    // Ensure numeric price values
     this.tickets.forEach(ticket => {
       ticket.price = Number(ticket.price);
     });
 
-    // ✅ Validate input before submitting
-    if (this.tickets.some(ticket => !ticket.section || !ticket.type || isNaN(ticket.price) || ticket.price <= 0)) {
+    // Validate fields
+    if (
+      this.tickets.some(ticket =>
+        !ticket.section || !ticket.type || isNaN(ticket.price) || ticket.price <= 0)
+    ) {
       alert("Please fill in all ticket details with valid prices.");
       return;
     }
@@ -70,7 +95,7 @@ export class TicketPageComponent {
       eventDateTime: this.eventDateTime,
       tickets: this.tickets,
       promoCode: this.promoCode,
-      discount: this.discount,
+      discount: this.discount
     };
 
     this.http.post('http://localhost:3000/api/tickets', ticketData).subscribe(
@@ -86,6 +111,7 @@ export class TicketPageComponent {
     );
   }
 }
+
 
 
 

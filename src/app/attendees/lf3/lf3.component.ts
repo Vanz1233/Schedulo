@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lf3',
@@ -13,72 +14,80 @@ export class Lf3Component implements OnInit {
   rowLabels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   seatsInEachRow = [8, 9, 11, 12, 12, 12, 12, 11, 10, 8, 5]; // Number of seats in each row
 
-  ngOnInit() {
-      this.initializeSeats();
-      this.markReservedSeats();
-  }
+  constructor(private router: Router) {}
 
-  initializeSeats() {
-      for (let i = 0; i < this.seatsInEachRow.length; i++) {
-          this.seatRows.push(Array(this.seatsInEachRow[i]).fill(null));
-      }
-  }
+    ngOnInit() {
+        this.initializeSeats();
+        this.markReservedSeats();
+    }
 
-  markReservedSeats() {
-      let reservedCount = 0;
-      const totalSeats = this.seatsInEachRow.reduce((acc, val) => acc + val, 0);
+    initializeSeats() {
+        for (let i = 0; i < this.seatsInEachRow.length; i++) {
+            this.seatRows.push(Array(this.seatsInEachRow[i]).fill(null));
+        }
+    }
 
-      while (reservedCount < Math.floor(totalSeats * 0.15)) {
-          const rowIndex = Math.floor(Math.random() * this.seatsInEachRow.length);
-          const seatIndex = Math.floor(Math.random() * this.seatsInEachRow[rowIndex]);
-          const seatLabel = this.getSeatLabel(rowIndex, seatIndex);
+    markReservedSeats() {
+        let reservedCount = 0;
+        const totalSeats = this.seatsInEachRow.reduce((acc, val) => acc + val, 0);
 
-          if (!this.reservedSeats.has(seatLabel)) {
-              this.reservedSeats.add(seatLabel);
-              reservedCount++;
-          }
-      }
-  }
+        while (reservedCount < Math.floor(totalSeats * 0.15)) {
+            const rowIndex = Math.floor(Math.random() * this.seatsInEachRow.length);
+            const seatIndex = Math.floor(Math.random() * this.seatsInEachRow[rowIndex]);
+            const seatLabel = this.getSeatLabel(rowIndex, seatIndex);
 
-  getSeatLabel(rowIndex: number, seatIndex: number): string {
-      return `${this.rowLabels[rowIndex]}${seatIndex + 1}`;
-  }
+            if (!this.reservedSeats.has(seatLabel)) {
+                this.reservedSeats.add(seatLabel);
+                reservedCount++;
+            }
+        }
+    }
 
-  isReserved(rowIndex: number, seatIndex: number): boolean {
-      const seatLabel = this.getSeatLabel(rowIndex, seatIndex);
-      return this.reservedSeats.has(seatLabel);
-  }
+    getSeatLabel(rowIndex: number, seatIndex: number): string {
+        return `${this.rowLabels[rowIndex]}${seatIndex + 1}`;
+    }
 
-  isSelected(rowIndex: number, seatIndex: number): boolean {
-      const seatLabel = this.getSeatLabel(rowIndex, seatIndex);
-      return this.selectedSeats.includes(seatLabel);
-  }
+    isReserved(rowIndex: number, seatIndex: number): boolean {
+        const seatLabel = this.getSeatLabel(rowIndex, seatIndex);
+        return this.reservedSeats.has(seatLabel);
+    }
 
-  toggleSeat(rowIndex: number, seatIndex: number) {
-      const seatLabel = this.getSeatLabel(rowIndex, seatIndex);
+    isSelected(rowIndex: number, seatIndex: number): boolean {
+        const seatLabel = this.getSeatLabel(rowIndex, seatIndex);
+        return this.selectedSeats.includes(seatLabel);
+    }
 
-      if (this.isReserved(rowIndex, seatIndex)) return;
+    toggleSeat(rowIndex: number, seatIndex: number) {
+        const seatLabel = this.getSeatLabel(rowIndex, seatIndex);
 
-      const isSelected = this.selectedSeats.includes(seatLabel);
+        if (this.isReserved(rowIndex, seatIndex)) return;
 
-      if (isSelected) {
-          this.selectedSeats = this.selectedSeats.filter(s => s !== seatLabel);
-      } else {
-          if (this.selectedSeats.length < this.maxSeats) {
-              this.selectedSeats.push(seatLabel);
-          }
-      }
-  }
+        const isSelected = this.selectedSeats.includes(seatLabel);
 
-  clearSelection() {
-      this.selectedSeats = [];
-  }
+        if (isSelected) {
+            this.selectedSeats = this.selectedSeats.filter(s => s !== seatLabel);
+        } else {
+            if (this.selectedSeats.length < this.maxSeats) {
+                this.selectedSeats.push(seatLabel);
+            }
+        }
+    }
 
-  proceedSelection() {
-      if (this.selectedSeats.length > 0) {
-          alert("You have selected seats: " + this.selectedSeats.join(", "));
-      }
-  }
+    clearSelection() {
+        this.selectedSeats = [];
+    }
 
-
+    proceedSelection() {
+        if (this.selectedSeats.length > 0) {
+            // Navigate to payment page with selected seats and section as query params
+            this.router.navigate(['/payment-1'], { 
+                queryParams: { 
+                    section: 'LF3', 
+                    seats: JSON.stringify(this.selectedSeats) 
+                }
+            });
+        } else {
+            alert("Please select at least one seat.");
+        }
+    }
 }

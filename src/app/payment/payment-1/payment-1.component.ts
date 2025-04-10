@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment-1',
@@ -14,7 +15,7 @@ export class Payment1Component implements OnInit {
   totalPrice: number = 0; // Calculated total price
   discountedPrice: number = 0; // Discounted price for one ticket
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     // Fetch query parameters (section and seats)
@@ -50,6 +51,7 @@ export class Payment1Component implements OnInit {
         }
 
         this.discountedPrice = this.ticketData.price * (1 - discountPercentage);
+        console.log('Discounted Price:', this.discountedPrice); // Debugging
 
         // Calculate total price based on the number of seats
         if (this.discountedPrice && this.seats.length > 0) {
@@ -65,7 +67,28 @@ export class Payment1Component implements OnInit {
       }
     );
   }
+
+  goToPayment2(): void {
+    console.log('Navigating to Payment-2 with state:', {
+      ticketType: this.ticketData.type,
+      section: this.section,
+      quantity: this.seats.length,
+      seats: this.seats,
+      totalPrice: this.totalPrice,
+    }); // Debugging
+
+    this.router.navigate(['/payment-2'], {
+      state: {
+        ticketType: this.ticketData.type,
+        section: this.section,
+        quantity: this.seats.length,
+        seats: this.seats,
+        totalPrice: this.totalPrice,
+      },
+    });
+  }
 }
+
 
 
 

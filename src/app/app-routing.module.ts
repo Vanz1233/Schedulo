@@ -41,7 +41,7 @@ const routes: Routes = [
   {path : 'payment-2', component: Payment2Component},
   {path : 'payment-3', component: Payment3Component},
   {path : 'payment-4', component: Payment4Component},
-  {path: '', redirectTo: 'payment-2', pathMatch: 'full' }
+  {path: '', redirectTo: 'select-section', pathMatch: 'full' }
 ];
 
 @NgModule({

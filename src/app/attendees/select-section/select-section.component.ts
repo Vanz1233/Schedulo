@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-select-section',
   templateUrl: './select-section.component.html',
-  styleUrls: ['../../../assets/css/select-section.css']
+  styleUrls: ['../../../assets/css/select-section.css', 'select-section.component.css']
 })
 export class SelectSectionComponent {
   selectedSection: string | null = null;  // Holds the selected section

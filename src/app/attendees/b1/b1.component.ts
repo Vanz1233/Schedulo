@@ -82,7 +82,7 @@ export class B1Component implements OnInit {
             // Navigate to payment page with selected seats and section as query params
             this.router.navigate(['/payment-1'], { 
                 queryParams: { 
-                    section: 'b1', 
+                    section: 'B1', 
                     seats: JSON.stringify(this.selectedSeats) 
                 }
             });

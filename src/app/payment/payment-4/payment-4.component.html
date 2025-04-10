@@ -48,30 +48,30 @@
 
     <div class="ticket-confirmation-container">
         <div class="ticket-details">
-            <h2 class="-seatingticket-title" style="text-align: center; font-weight: bold; margin-top: 10px;">TITLE</h2>
-            <p class="setaingticket-subtitle" style="text-align: center; font-weight: bold; margin-bottom: 30px;">DATE & TIME</p>
+            <h2 class="-seatingticket-title" style="text-align: center; font-weight: bold; margin-top: 10px;">KESHI REQUIEM CONCERT</h2>
+            <p class="seatingticket-subtitle" style="text-align: center; font-weight: bold; margin-bottom: 30px;">May 1st, 9:00pm</p>
 
             <h5 style="font-weight: bold;">Booking ID:</h5>
             <br>
             
             <div class="detail-row">
                 <div class="detail-label">Ticket Type:</div>
-                <div class="detail-value">[Ticket Type will be displayed here]</div>
+                <div class="detail-value">{{ ticketType }}</div>
             </div>
 
             <div class="detail-row">
                 <div class="detail-label">Section:</div>
-                <div class="detail-value">[Section will be displayed here]</div>
+                <div class="detail-value">{{ section }}</div>
             </div>
             
             <div class="detail-row">
                 <div class="detail-label">Quantity:</div>
-                <div class="detail-value">[Quantity will be displayed here]</div>
+                <div class="detail-value">{{ quantity }}</div>
             </div>
             
             <div class="detail-row">
                 <div class="detail-label">Selected Seat(s):</div>
-                <div class="detail-value">[Selected seats will be displayed here]</div>
+                <div class="detail-value">{{ seats.join(', ') }}</div>
             </div>
         </div>
 
@@ -80,16 +80,12 @@
         <div class="ticket-details">
             <div class="detail-row">
                 <div class="detail-label" style="font-size: 18px; font-weight: bold;">TOTAL PRICE:</div>
-                <div class="detail-value">[TOTAL PRICE will be displayed here]</div>
+                <div class="detail-value">{{ totalPrice | currency }}</div>
             </div>
         </div>
     </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <br><br><br><br><br>
 </body>
 
 <footer class="py-3" style="background-color: #c5d3cc;">
@@ -113,3 +109,4 @@
         </div>
     </div>
 </footer>
+

@@ -5,9 +5,10 @@ const cors = require('cors');
 const nodemailer = require('nodemailer');
 const Ticket = require('./models/newTicket'); // ✅ Import the Ticket model
 
-const eventOrganizerRoutes = require('./routes/eventOrganiser'); 
+const eventOrganizerRoutes = require('./routes/eventOrganiser');
 const ticketRoutes = require('./routes/ticketRoutes');
 const authRoutes = require('./routes/authRoutes'); // ✅ Import the auth routes
+const paymentSuccessRoutes = require('./routes/paymentSuccess'); // ✅ Import paymentSuccess route
 
 const app = express();
 
@@ -27,28 +28,22 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-// ✅ Debugging: Log incoming requests
-app.use((req, res, next) => {
-  console.log(`📥 ${req.method} ${req.url}`, req.body);
-  next();
-});
-
 // ✅ MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => console.log('✅ MongoDB Connected'))
-.catch(err => {
-  console.error('❌ MongoDB Connection Error:', err);
-  process.exit(1);
-});
+  .then(() => console.log('✅ MongoDB Connected'))
+  .catch(err => {
+    console.error('❌ MongoDB Connection Error:', err);
+    process.exit(1);
+  });
 
 // ✅ Load Routes
-app.use('/api', eventOrganizerRoutes); 
+app.use('/api', eventOrganizerRoutes);
 app.use('/api', ticketRoutes);
 app.use('/api/auth', authRoutes); // ✅ Use the auth routes under '/api/auth'
+app.use('/api/payment', paymentSuccessRoutes); // ✅ Add payment success route
 
 // ✅ Add New Route for Fetching Ticket Sections
 app.get('/api/ticket-sections', async (req, res) => {
@@ -88,11 +83,12 @@ transporter.verify((error, success) => {
   }
 });
 
-
-
 // ✅ Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+
+
+
 
 
 

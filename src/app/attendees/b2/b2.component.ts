@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-b2',
@@ -6,12 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../../../assets/css/select-section.css']
 })
 export class B2Component implements OnInit {
+
+    // Define the seat rows and their properties
   seatRows: any[][] = [];
     selectedSeats: string[] = [];
     reservedSeats: Set<string> = new Set();
     maxSeats = 6;
     rowLabels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     seatsInEachRow = [22, 22, 22, 21]; // Number of seats in each row
+
+    constructor(private router: Router) {}
 
     ngOnInit() {
         this.initializeSeats();
@@ -76,8 +81,15 @@ export class B2Component implements OnInit {
 
     proceedSelection() {
         if (this.selectedSeats.length > 0) {
-            alert("You have selected seats: " + this.selectedSeats.join(", "));
+            // Navigate to payment page with selected seats and section as query params
+            this.router.navigate(['/payment-1'], { 
+                queryParams: { 
+                    section: 'B2', 
+                    seats: JSON.stringify(this.selectedSeats) 
+                }
+            });
+        } else {
+            alert("Please select at least one seat.");
         }
     }
-
 }
