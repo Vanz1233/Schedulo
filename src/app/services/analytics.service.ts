@@ -10,6 +10,10 @@ export class AnalyticsService {
   constructor(private http: HttpClient) {}
 
   getReport(type: string, period: string) {
-    return this.http.post<any>(`${this.apiUrl}/report`, { type, period });
+    return this.http.post<any>(`${this.apiUrl}/report`, {
+      reportType: type,
+      period
+    });
   }
 }
+

@@ -3,12 +3,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
-const Ticket = require('./models/newTicket'); // ✅ Import the Ticket model
 
+const Ticket = require('./models/newTicket');
 const eventOrganizerRoutes = require('./routes/eventOrganiser');
 const ticketRoutes = require('./routes/ticketRoutes');
-const authRoutes = require('./routes/authRoutes'); // ✅ Import the auth routes
-const paymentSuccessRoutes = require('./routes/paymentSuccess'); // ✅ Import paymentSuccess route
+const authRoutes = require('./routes/authRoutes');
+const paymentSuccessRoutes = require('./routes/paymentSuccess');
+const dataChartsRoutes = require('./routes/dataCharts'); // ✅ Add analytics route
 
 const app = express();
 
@@ -42,13 +43,15 @@ mongoose.connect(process.env.MONGO_URI, {
 // ✅ Load Routes
 app.use('/api', eventOrganizerRoutes);
 app.use('/api', ticketRoutes);
-app.use('/api/auth', authRoutes); // ✅ Use the auth routes under '/api/auth'
-app.use('/api/payment', paymentSuccessRoutes); // ✅ Add payment success route
+app.use('/api/auth', authRoutes);
+app.use('/api/payment', paymentSuccessRoutes);
 
-// ✅ Add New Route for Fetching Ticket Sections
+// ✅ Fix: Register analytics endpoint under `/api/analytics`
+app.use('/api/analytics', dataChartsRoutes);
+
+// ✅ Ticket Sections Endpoint
 app.get('/api/ticket-sections', async (req, res) => {
   try {
-    // Fetch distinct seating sections from tickets
     const sections = await Ticket.distinct('tickets.section');
     res.status(200).json({ sections });
   } catch (error) {
@@ -57,7 +60,7 @@ app.get('/api/ticket-sections', async (req, res) => {
   }
 });
 
-// ✅ Debug Registered Routes (Only in Development)
+// ✅ Debug Registered Routes
 if (process.env.NODE_ENV === 'development') {
   console.log('📌 Registered Routes:');
   app._router.stack
@@ -67,14 +70,13 @@ if (process.env.NODE_ENV === 'development') {
 
 // ✅ Nodemailer Setup
 const transporter = nodemailer.createTransport({
-  service: 'gmail',  // Or use another email service
+  service: 'gmail',
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
   }
 });
 
-// ✅ Test Email Configuration
 transporter.verify((error, success) => {
   if (error) {
     console.error('❌ Email Service Error:', error);
@@ -86,6 +88,7 @@ transporter.verify((error, success) => {
 // ✅ Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+
 
 
 

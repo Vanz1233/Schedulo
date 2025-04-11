@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-lf1',
-  templateUrl: './lf1.component.html',
-  styleUrls: ['../../../assets/css/select-section.css']
+    selector: 'app-lf1',
+    templateUrl: './lf1.component.html',
+    styleUrls: ['../../../assets/css/select-section.css'],
+    standalone: false
 })
 export class Lf1Component implements OnInit {
   seatRows: any[][] = [];

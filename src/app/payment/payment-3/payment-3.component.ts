@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-payment-3',
-  templateUrl: './payment-3.component.html',
-  styleUrls: ['./payment-3.component.css'],
+    selector: 'app-payment-3',
+    templateUrl: './payment-3.component.html',
+    styleUrls: ['./payment-3.component.css'],
+    standalone: false
 })
 export class Payment3Component implements OnInit {
   // Define properties that will be passed from previous components

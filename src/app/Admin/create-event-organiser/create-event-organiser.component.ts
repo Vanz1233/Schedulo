@@ -3,9 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'; // ✅ Import Router
 
 @Component({
-  selector: 'app-create-event-organiser',
-  templateUrl: './create-event-organiser.component.html',
-  styleUrls: ['./create-event-organiser.component.css']
+    selector: 'app-create-event-organiser',
+    templateUrl: './create-event-organiser.component.html',
+    styleUrls: ['./create-event-organiser.component.css'],
+    standalone: false
 })
 export class CreateEventOrganiserComponent {
   organizer = {

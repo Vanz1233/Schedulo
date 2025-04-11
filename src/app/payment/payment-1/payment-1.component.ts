@@ -4,9 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-payment-1',
-  templateUrl: './payment-1.component.html',
-  styleUrls: ['./payment-1.component.css'],
+    selector: 'app-payment-1',
+    templateUrl: './payment-1.component.html',
+    styleUrls: ['./payment-1.component.css'],
+    standalone: false
 })
 export class Payment1Component implements OnInit {
   section: string | null = null; // Section name (e.g., "B1")

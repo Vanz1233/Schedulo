@@ -3,9 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-registered-event-organisers',
-  templateUrl: './registered-event-organisers.component.html',
-  styleUrls: ['./registered-event-organisers.component.css']
+    selector: 'app-registered-event-organisers',
+    templateUrl: './registered-event-organisers.component.html',
+    styleUrls: ['./registered-event-organisers.component.css'],
+    standalone: false
 })
 export class RegisteredEventOrganisersComponent implements OnInit {
   organizers: any[] = [];

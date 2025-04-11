@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-b1',
     templateUrl: './b1.component.html',
-    styleUrls: ['../../../assets/css/select-section.css']
+    styleUrls: ['../../../assets/css/select-section.css'],
+    standalone: false
 })
 export class B1Component implements OnInit {
     seatRows: any[][] = [];

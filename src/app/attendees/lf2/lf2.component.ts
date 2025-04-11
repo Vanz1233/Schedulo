@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-lf2',
     templateUrl: './lf2.component.html',
-    styleUrls: ['../../../assets/css/select-section.css']
+    styleUrls: ['../../../assets/css/select-section.css'],
+    standalone: false
 })
 export class Lf2Component implements OnInit {
     seatRows: any[][] = [];

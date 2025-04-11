@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-b3',
-  templateUrl: './b3.component.html',
-  styleUrls: ['../../../assets/css/select-section.css']
+    selector: 'app-b3',
+    templateUrl: './b3.component.html',
+    styleUrls: ['../../../assets/css/select-section.css'],
+    standalone: false
 })
 export class B3Component implements OnInit {
   seatRows: any[][] = [];

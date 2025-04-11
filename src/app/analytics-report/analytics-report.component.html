@@ -1,31 +1,92 @@
-<div>
-    <h2>Analytics Report</h2>
-    
-    <label>Report Type:</label>
-    <select [(ngModel)]="reportType">
-      <option value="ticketSales">Ticket Sales</option>
-      <option value="revenue">Revenue</option>
-      <option value="seatOccupancy">Seat Occupancy</option>
-    </select>
-  
-    <label>Period:</label>
-    <select [(ngModel)]="period">
-      <option value="daily">Daily</option>
-      <option value="weekly">Weekly</option>
-      <option value="monthly">Monthly</option>
-    </select>
-  
-    <button (click)="generateReport()">Generate Report</button>
-  
-    <div *ngIf="reportData.length > 0">
-      <h3>Results</h3>
-      <table>
-        <tr><th>Period</th><th>Value</th></tr>
-        <tr *ngFor="let item of reportData">
-          <td>{{ item.label }}</td>
-          <td>{{ item.value }}</td>
-        </tr>
-      </table>
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand" href="admin_homepage.html">
+        <img src="assets/schedulo_logo.png" alt="Schedulo Logo">
+      </a>
+
+      <!-- Navbar Toggler for Mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Content -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto gap-4">
+          <li>
+            <a class="nav-link">EVENT ORGANIZERS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">REPORT</a>
+          </li>
+        </ul>
+
+        <!-- Buttons -->
+        <div class="d-flex align-items-center">
+          <span> </span>
+          <i class="fa-solid fa-user-circle fa-lg me-2"></i>
+          <span class="fw-bold">Victoria</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="analytics-container">
+    <h2 class="analytics-title">Schedulo Analytics Report</h2>
+
+    <div class="analytics-form">
+      <h5>View Reports</h5>
+      <form (ngSubmit)="generateReport()" class="report-inline-form">
+        <div class="form-group-inline">
+          <label for="reportType">Report Type</label>
+          <select id="reportType" [(ngModel)]="reportType" name="reportType" required>
+            <option value="ticketSales">Ticket Sales</option>
+            <option value="revenue">Revenue</option>
+            <option value="seatOccupancy">Seat Occupancy</option>
+          </select>
+        </div>
+
+        <div class="form-group-inline">
+          <label for="period">Report Period</label>
+          <select id="period" [(ngModel)]="period" name="period" required>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+        </div>
+
+        <button type="submit" class="generate-btn">Generate</button>
+      </form>
+    </div>
+
+    <!-- Chart Section -->
+    <div *ngIf="reportData.length > 0" class="chart-section mt-4">
+      <canvas baseChart
+        [data]="chartData"
+        [options]="chartOptions"
+        [type]="chartType">
+      </canvas>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="py-3 mt-5 bg-light border-top">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <img src="assets/schedulo.png" alt="Logo" style="width: 80px; height: auto;">
+        <span class="ms-2">&copy; 2025 Schedulo. All rights reserved.</span>
+      </div>
+      <div class="d-flex">
+        <a href="#" class="footer-link mx-2 text-decoration-none">Terms and Conditions</a>
+        <a href="#" class="footer-link mx-2 text-decoration-none">Privacy Policy</a>
+        <a href="#" class="footer-link mx-2 text-decoration-none">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+
+  
   

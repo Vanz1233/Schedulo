@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-ticket-page',
-  templateUrl: './ticket-page.component.html',
-  styleUrls: ['./ticket-page.component.css']
+    selector: 'app-ticket-page',
+    templateUrl: './ticket-page.component.html',
+    styleUrls: ['./ticket-page.component.css'],
+    standalone: false
 })
 export class TicketPageComponent {
   eventTitle: string = "Event Title";

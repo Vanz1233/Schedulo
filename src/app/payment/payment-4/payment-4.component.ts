@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-payment-4',
   templateUrl: './payment-4.component.html',
-  styleUrls: ['./payment-4.component.css']
+  styleUrls: ['./payment-4.component.css'],
+  standalone: false
 })
 export class Payment4Component implements OnInit {
   ticketType: string = '';
@@ -17,7 +18,6 @@ export class Payment4Component implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    // Retrieve the payment info passed from Payment 3
     const state = history.state;
     if (state) {
       this.ticketType = state.ticketType;
@@ -26,22 +26,21 @@ export class Payment4Component implements OnInit {
       this.seats = state.seats;
       this.totalPrice = state.totalPrice;
     }
-    
-    this.sendEmail(); // Send email once the payment info is displayed
+
+    this.sendEmail();
+    this.saveChartData(); // Save data for chart analytics
   }
 
   sendEmail(): void {
-    // Prepare email data
     const emailData = {
-      userEmail: 'vancetindoc@gmail.com',  // Always send email to this address in development
+      userEmail: 'vancetindoc@gmail.com',
       ticketType: this.ticketType,
       section: this.section,
       quantity: this.quantity,
       seats: this.seats,
       totalPrice: this.totalPrice
     };
-  
-    // Send the email request to the backend
+
     this.http.post('http://localhost:3000/api/payment/send-ticket-email', emailData).subscribe(
       (response: any) => {
         console.log('Email sent successfully:', response);
@@ -50,11 +49,31 @@ export class Payment4Component implements OnInit {
       },
       (error) => {
         console.error('Error sending email:', error);
-        // Consider adding user feedback here (e.g., alert or a message in the UI)
+      }
+    );
+  }
+
+  saveChartData(): void {
+    const chartData = {
+      ticketType: this.ticketType,
+      section: this.section,
+      quantity: this.quantity,
+      seats: this.seats,
+      totalPrice: this.totalPrice
+    };
+
+    this.http.post('http://localhost:3000/api/data-charts/save', chartData).subscribe(
+      (response: any) => {
+        console.log('Chart data saved successfully:', response);
+      },
+      (error) => {
+        console.error('Error saving chart data:', error);
       }
     );
   }
 }
+
+
 
 
 

@@ -24,6 +24,8 @@ import { Payment2Component } from './payment/payment-2/payment-2.component';
 import { Payment3Component } from './payment/payment-3/payment-3.component';
 import { Payment4Component } from './payment/payment-4/payment-4.component';
 import { AnalyticsReportComponent } from './analytics-report/analytics-report.component';
+import { NgChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { AnalyticsReportComponent } from './analytics-report/analytics-report.co
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

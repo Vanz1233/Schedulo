@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-payment-2',
-  templateUrl: './payment-2.component.html',
-  styleUrl: './payment-2.component.css'
+    selector: 'app-payment-2',
+    templateUrl: './payment-2.component.html',
+    styleUrl: './payment-2.component.css',
+    standalone: false
 })
 export class Payment2Component implements OnInit {
   // Local variable to hold the data from payment-1
