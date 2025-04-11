@@ -20,6 +20,7 @@ import { Payment1Component } from './payment/payment-1/payment-1.component';
 import { Payment2Component } from './payment/payment-2/payment-2.component';
 import { Payment3Component } from './payment/payment-3/payment-3.component';
 import { Payment4Component } from './payment/payment-4/payment-4.component';
+import { AnalyticsReportComponent } from './analytics-report/analytics-report.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path : 'payment-2', component: Payment2Component},
   {path : 'payment-3', component: Payment3Component},
   {path : 'payment-4', component: Payment4Component},
+  {path: 'analytics-report', component: AnalyticsReportComponent},
   {path: '', redirectTo: 'select-section', pathMatch: 'full' }
 ];
 

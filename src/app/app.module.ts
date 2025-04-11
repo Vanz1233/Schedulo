@@ -23,6 +23,7 @@ import { Payment1Component } from './payment/payment-1/payment-1.component';
 import { Payment2Component } from './payment/payment-2/payment-2.component';
 import { Payment3Component } from './payment/payment-3/payment-3.component';
 import { Payment4Component } from './payment/payment-4/payment-4.component';
+import { AnalyticsReportComponent } from './analytics-report/analytics-report.component';
 
 @NgModule({
   declarations: [
@@ -45,14 +46,15 @@ import { Payment4Component } from './payment/payment-4/payment-4.component';
     Payment1Component,
     Payment2Component,
     Payment3Component,
-    Payment4Component
+    Payment4Component,
+    AnalyticsReportComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

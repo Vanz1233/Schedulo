@@ -1,1 +1,31 @@
-<p>analytics-report works!</p>
+<div>
+    <h2>Analytics Report</h2>
+    
+    <label>Report Type:</label>
+    <select [(ngModel)]="reportType">
+      <option value="ticketSales">Ticket Sales</option>
+      <option value="revenue">Revenue</option>
+      <option value="seatOccupancy">Seat Occupancy</option>
+    </select>
+  
+    <label>Period:</label>
+    <select [(ngModel)]="period">
+      <option value="daily">Daily</option>
+      <option value="weekly">Weekly</option>
+      <option value="monthly">Monthly</option>
+    </select>
+  
+    <button (click)="generateReport()">Generate Report</button>
+  
+    <div *ngIf="reportData.length > 0">
+      <h3>Results</h3>
+      <table>
+        <tr><th>Period</th><th>Value</th></tr>
+        <tr *ngFor="let item of reportData">
+          <td>{{ item.label }}</td>
+          <td>{{ item.value }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
