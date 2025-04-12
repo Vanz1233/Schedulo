@@ -17,8 +17,10 @@ body {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  margin-right: 52rem;
+  margin-right: 25rem;
   color: #222;
+  font-weight: 700;
+  text-transform: uppercase;  
 }
 
 /* Side-by-side layout */
@@ -32,7 +34,7 @@ body {
 
 /* Form box */
 .analytics-form {
-  background: #fff;
+  background: #ffffff;
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -106,12 +108,14 @@ canvas {
   gap: 1rem;
   align-items: center;
   margin-top: 1rem;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* Generate Button */
 .generate-btn {
   padding: 0.6rem 2.0rem;
-  background-color: #007bff;
+  background-color: #313131;
   color: white;
   border: none;
   border-radius: 5px;
@@ -121,7 +125,7 @@ canvas {
 }
 
 .generate-btn:hover {
-  background-color: #0056b3;
+  background-color: #000000;
 }
 
 /* PDF Button using image */
@@ -131,6 +135,7 @@ canvas {
   padding: 0;
   cursor: pointer;
   align-self: center;
+  margin-left: 60px;
 }
 
 .download-pdf-btn {

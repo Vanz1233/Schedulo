@@ -21,6 +21,7 @@ import { Payment2Component } from './payment/payment-2/payment-2.component';
 import { Payment3Component } from './payment/payment-3/payment-3.component';
 import { Payment4Component } from './payment/payment-4/payment-4.component';
 import { AnalyticsReportComponent } from './analytics-report/analytics-report.component';
+import { EventHomepageComponent } from './Event-organiser/event-homepage/event-homepage.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -43,7 +44,8 @@ const routes: Routes = [
   {path : 'payment-3', component: Payment3Component},
   {path : 'payment-4', component: Payment4Component},
   {path: 'analytics-report', component: AnalyticsReportComponent},
-  {path: '', redirectTo: 'select-section', pathMatch: 'full' }
+  {path: 'event-homepage', component: EventHomepageComponent},
+  {path: '', redirectTo: 'homepage', pathMatch: 'full' }
 ];
 
 @NgModule({

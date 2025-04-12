@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from '../services/analytics.service';
 import { ChartConfiguration } from 'chart.js';
+import { Router } from '@angular/router';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
@@ -34,11 +35,24 @@ export class AnalyticsReportComponent implements OnInit {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: true
+        display: true,
+        labels: {
+          font: {
+            size: 14,
+            family: 'Arial',
+            weight: 'bold'
+          }
+        }
       },
       title: {
         display: true,
-        text: 'Ticket Sales'
+        text: 'Ticket Sales',
+        font: {
+          size: 25,
+          family: 'Arial',
+          weight: 'bold'
+        },
+        color: '#333'
       }
     },
     scales: {
@@ -51,7 +65,11 @@ export class AnalyticsReportComponent implements OnInit {
     }
   };
 
-  constructor(private analyticsService: AnalyticsService) {}
+  constructor(private analyticsService: AnalyticsService, private router: Router) {}
+
+  goBackToEventHomepage() {
+    this.router.navigate(['/event-homepage']);
+  }
 
   ngOnInit(): void {
     this.generateReport();

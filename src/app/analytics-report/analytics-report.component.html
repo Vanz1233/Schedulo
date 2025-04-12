@@ -19,7 +19,7 @@
             <a class="nav-link">EVENT ORGANIZERS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">HOME</a>
+            <a class="nav-link" (click)="goBackToEventHomepage()">HOME</a>
           </li>
         </ul>
 
@@ -33,7 +33,7 @@
   </nav>
 
   <div class="analytics-container">
-    <h2 class="analytics-title">Analytics Report</h2>
+    <h2 class="analytics-title">Analytics Report - Keshi Requiem Tour</h2>
   
     <div class="analytics-content-row">
       <!-- Form on the left -->
@@ -63,7 +63,7 @@
           </div>
   
           <div class="button-row">
-            <button type="submit" class="generate-btn">Generate</button>
+            <button type="submit" class="generate-btn">Generate Chart</button>
             <button type="button" (click)="confirmDownload()" class="pdf-btn">
               <img src="assets/download-pdf.png" alt="Download PDF" class="download-pdf-btn">
             </button>

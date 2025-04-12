@@ -40,7 +40,7 @@ export class LoginComponent {
                 this.router.navigate(['/admin-homepage']);
               } else if (response.role === 'event-organiser') {
                 alert('Login Successful!');
-                this.router.navigate(['/event-organiser-homepage']);
+                this.router.navigate(['/event-homepage']);
               } else {
                 this.errorMessage = 'Unkown Schedulo Role.';
               }

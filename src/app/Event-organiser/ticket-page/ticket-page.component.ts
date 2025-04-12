@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
     standalone: false
 })
 export class TicketPageComponent {
-  eventTitle: string = "Event Title";
-  eventDateTime: string = "Date & Time";
+  eventTitle: string = "Keshi Requiem Tour";
+  eventDateTime: string = "May 1st, 9:00pm";
 
   sections: string[] = ["LF3", "LF2", "LF1", "B3", "B2", "B1"];
   selectedSection: string | null = null;
