@@ -29,6 +29,10 @@ export class RegisteredEventOrganisersComponent implements OnInit {
   goToCreateEventOrganiser() {
     this.router.navigate(['/create-event-organiser']);
   }
+
+  goBackToAdminHomepage() {
+    this.router.navigate(['/admin-homepage']);
+  }
 }
 
 
