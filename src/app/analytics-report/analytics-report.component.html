@@ -19,13 +19,12 @@
             <a class="nav-link">EVENT ORGANIZERS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">REPORT</a>
+            <a class="nav-link" href="#">HOME</a>
           </li>
         </ul>
 
-        <!-- Buttons -->
+        <!-- User Info -->
         <div class="d-flex align-items-center">
-          <span> </span>
           <i class="fa-solid fa-user-circle fa-lg me-2"></i>
           <span class="fw-bold">Victoria</span>
         </div>
@@ -34,42 +33,55 @@
   </nav>
 
   <div class="analytics-container">
-    <h2 class="analytics-title">Schedulo Analytics Report</h2>
-
-    <div class="analytics-form">
-      <h5>View Reports</h5>
-      <form (ngSubmit)="generateReport()" class="report-inline-form">
-        <div class="form-group-inline">
-          <label for="reportType">Report Type</label>
-          <select id="reportType" [(ngModel)]="reportType" name="reportType" required>
-            <option value="ticketSales">Ticket Sales</option>
-            <option value="revenue">Revenue</option>
-            <option value="seatOccupancy">Seat Occupancy</option>
-          </select>
-        </div>
-
-        <div class="form-group-inline">
-          <label for="period">Report Period</label>
-          <select id="period" [(ngModel)]="period" name="period" required>
-            <option value="daily">Daily</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
-          </select>
-        </div>
-
-        <button type="submit" class="generate-btn">Generate</button>
-      </form>
-    </div>
-
-    <!-- Chart Section -->
-    <div *ngIf="reportData.length > 0" class="chart-section mt-4">
-      <canvas baseChart
-        [data]="chartData"
-        [options]="chartOptions"
-        [type]="chartType">
-      </canvas>
+    <h2 class="analytics-title">Analytics Report</h2>
+  
+    <div class="analytics-content-row">
+      <!-- Form on the left -->
+      <div class="analytics-form">
+        <div class="analytics-thumbnail">
+          <img src="assets/keshi concert.jpg" alt="Keshi Concert" />
+        </div> 
+        <h4 class="Keshi-title">Keshi Requiem Tour</h4>       
+        <h5>View Reports</h5>
+        <form (ngSubmit)="generateReport()" class="report-inline-form">
+          <div class="form-group-inline">
+            <label for="reportType">Report Type</label>
+            <select id="reportType" [(ngModel)]="reportType" name="reportType" required>
+              <option value="ticketSales">Ticket Sales</option>
+              <option value="revenue">Revenue</option>
+              <option value="seatOccupancy">Seat Occupancy</option>
+            </select>
+          </div>
+  
+          <div class="form-group-inline">
+            <label for="period">Sort by:</label>
+            <select id="period" [(ngModel)]="period" name="period" required>
+              <option value="daily">Days</option>
+              <option value="weekly">Weeks</option>
+              <option value="monthly">Months</option>
+            </select>
+          </div>
+  
+          <div class="button-row">
+            <button type="submit" class="generate-btn">Generate</button>
+            <button type="button" (click)="confirmDownload()" class="pdf-btn">
+              <img src="assets/download-pdf.png" alt="Download PDF" class="download-pdf-btn">
+            </button>
+          </div>
+        </form>
+      </div>
+  
+      <!-- Chart on the right -->
+      <div *ngIf="reportData.length > 0" id="chart-container" class="chart-section">
+        <canvas baseChart
+          [data]="chartData"
+          [options]="chartOptions"
+          [type]="chartType">
+        </canvas>
+      </div>
     </div>
   </div>
+  
 
   <!-- Footer -->
   <footer class="py-3 mt-5 bg-light border-top">
@@ -86,6 +98,7 @@
     </div>
   </footer>
 </body>
+
 
 
   
