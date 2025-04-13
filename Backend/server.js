@@ -2,9 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer'); // ✅ Nodemailer for emails
 const eventOrganizerRoutes = require('./routes/eventOrganiser'); // Import event organizer routes
 const eventCreationRoutes = require('./routes/eventCreation'); // Import event creation routes
+const waitlistRoutes = require('./routes/waitlist');// Import waitlist routes
 
 const app = express();
 
@@ -47,6 +49,7 @@ mongoose.connect(process.env.MONGO_URI, {
 // ✅ Register Routes
 app.use('/api', eventOrganizerRoutes);
 app.use('/api', eventCreationRoutes);
+app.use('/api', waitlistRoutes);
 
 // ✅ Debug: List all registered routes
 app._router.stack
@@ -73,13 +76,3 @@ testEmailTransporter.verify((error, success) => {
 // ✅ Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-
-
-
-
-
-
-
-
-
-

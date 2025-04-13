@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Waitlist</title>
+  <link rel="stylesheet" href="manage-waitlist.component.css">
+</head>
+<body>
+    <button onclick="togglePopup()">Join Waitlist</button>
+
+    <div id="overlay" onclick="togglePopup()"></div>
+  
+    <div id="popup">
+      <h3>Join Waitlist</h3>
+      <form id="waitlistForm">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="text" id="event" placeholder="Event Name" required />
+        <input type="date" id="date" required />
+        <button type="submit" id="joinBtn">Join</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="waitlistBody"></tbody>
+      </table>
+
+    <script src="manage-waitlist.component.js"></script>
+
+</body>
+</html>
