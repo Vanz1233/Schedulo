@@ -1,0 +1,124 @@
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="attendees_homepage.html">
+                <img src="assets/schedulo_logo.png" alt="Schedulo Logo">
+            </a>
+    
+            <!-- Navbar Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">EVENTS</a>
+                    </li>
+                </ul>
+    
+                <!-- Buttons -->
+                <div class="d-flex align-items-center">
+                    <span> </span>
+                    <i class="fa-solid fa-user-circle fa-lg me-2"></i>
+                    <span class="fw-bold">User</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Back Navigation -->
+    <div class="back-container" style="margin: 20px 0 0 20px;">
+        <a href="javascript:history.back()"
+            style="text-decoration: none; color: #333; display: flex; align-items: center;">
+            <strong><i class="fa-solid fa-chevron-left"></i></strong>
+            <span class="back-text">BACK</span>
+        </a>
+    </div>
+    
+    <h2 class="-seatingticket-title" style="text-align: center; font-weight: bold; margin-top: 50px;">KESHI REQUIEM CONCERT</h2>
+    <p class="setaingticket-subtitle" style="text-align: center; font-weight: bold;">May 1st 2025, 9:00pm</p>
+    <h3 class="setaingticket-subtitle" style="text-align: center; font-weight: bold;">Section B3</h3>
+    
+    <div class="seat-wrapper-b3">
+        <div class="seatings-container-b3">
+            <div class="seat-row-b3" *ngFor="let row of seatRows; let i = index" style="display: flex; justify-content: center;">
+                <div class="seat-b3" *ngFor="let seat of row; let j = index" 
+                     (click)="toggleSeat(i, j)"
+                     [class.available]="!isReserved(i, j)" 
+                     [class.reserved]="isReserved(i, j)"
+                     [class.selected]="isSelected(i, j)" 
+                     [attr.data-label]="getSeatLabel(i, j)">
+                    <i class="fa-solid fa-couch"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Seat Indicator Legend -->
+    <div class="seat-legend">
+        <div class="legend-item">
+            <i class="fa-solid fa-circle available-icon"></i> <span style="color: #40cede">Available</span>
+        </div>
+        <div class="legend-item">
+            <i class="fa-solid fa-circle reserved-icon"></i> <span style="color: #ff4141">Reserved</span>
+        </div>
+        <div class="legend-item">
+            <i class="fa-solid fa-circle selected-icon"></i> <span style="color:#2b3a33">Selected</span>
+        </div>
+    </div>
+    
+    
+    <div class="container">
+        <div class="ticket-form2">
+            <div>
+                <h4 class="title">Ticket Quantity: <strong id="ticket-quantity">{{ selectedSeats.length }}</strong></h4>
+            </div>
+    
+            <div>
+                <h4 class="title">Selected Seats: <strong
+                        id="selected-seats">{{ selectedSeats.join(', ') || 'None Selected' }}</strong></h4>
+            </div>
+    
+            <hr class="divider">
+    
+            <button type="button" (click)="clearSelection()" class="btn clear-btn">
+                Clear
+            </button>
+    
+            <button type="button" (click)="proceedSelection()" [disabled]="selectedSeats.length === 0"
+                class="btn proceed1-btn">
+                Proceed
+            </button>
+        </div>
+    </div>
+    
+    <footer class="py-3" style="background-color: #c5d3cc;">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left: Logo and Copyright -->
+                <div class="col-md-4 d-flex align-items-center">
+                    <img src="assets/schedulo_logo.png" alt="Logo" style="width: 100px; height: auto;">
+                    <span class="ms-2">&copy; 2025 Schedulo. All rights reserved.</span>
+                </div>
+    
+                <!-- Center: Empty Column (for spacing) -->
+                <div class="col-md-4"></div>
+    
+                <!-- Right: Navigation Links -->
+                <div class="col-md-4 d-flex justify-content-end">
+                    <a href="#" class="footer-link mx-2">Terms and Conditions</a>
+                    <a href="#" class="footer-link mx-2">Privacy Policy</a>
+                    <a href="#" class="footer-link mx-2">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+</body>

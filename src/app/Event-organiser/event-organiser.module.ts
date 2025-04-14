@@ -9,6 +9,7 @@ import { PageFourComponent } from './ticket/page-four/page-four.component';
 import { PageFiveComponent } from './ticket/page-five/page-five.component';
 import { SeatingComponent } from './ticket/seating/seating.component';
 import { TicketPageComponent } from './ticket-page/ticket-page.component';
+import { EventHomepageComponent } from './event-homepage/event-homepage.component';
 
 
 
@@ -22,7 +23,8 @@ import { TicketPageComponent } from './ticket-page/ticket-page.component';
     PageFourComponent,
     PageFiveComponent,
     SeatingComponent,
-    TicketPageComponent
+    TicketPageComponent,
+    EventHomepageComponent
   ],
   imports: [
     CommonModule
