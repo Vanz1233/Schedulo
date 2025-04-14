@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+    selector: 'app-homepage',
+    templateUrl: './homepage.component.html',
+    styleUrls: ['./homepage.component.css'],
+    standalone: false
 })
 export class HomepageComponent {
   isLoggedIn: boolean = false;
@@ -20,6 +21,10 @@ export class HomepageComponent {
   ngOnInit() {
     // Check if user is logged in (based on token in localStorage)
     this.isLoggedIn = !!localStorage.getItem('token');
+  }
+
+  goToLogin(): void {
+    this.router.navigate(['login']);
   }
 
   logout() {

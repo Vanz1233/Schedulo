@@ -1,0 +1,220 @@
+body {
+  background-color: #f3f3e5 !important;
+  margin: 0;
+  font-family: 'Monsterrat', sans-serif;
+  padding-bottom: 20px;
+}
+
+.analytics-container {
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 100%;
+  margin: 3rem auto;
+  padding: 0 2rem;
+  color: #333;
+}
+
+.analytics-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  margin-right: 25rem;
+  color: #222;
+  font-weight: 700;
+  text-transform: uppercase;  
+}
+
+/* Side-by-side layout */
+.analytics-content-row {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Form box */
+.analytics-form {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 350px;
+  flex-shrink: 0;
+}
+
+/* Chart container */
+.chart-section {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  flex-grow: 1;
+  min-width: 800px;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Make canvas big and centered */
+.chart-section canvas {
+  width: 100% !important;
+  height: 650px !important;
+  min-width: 800px;
+  max-width: none;
+  display: block;
+}
+
+canvas {
+  width: 100% !important;
+  height: 700px !important;
+  min-width: 850px;
+  max-width: none;
+  display: block;
+}
+
+/* Form layout */
+.report-inline-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group-inline {
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  max-width: 300px;
+  flex-grow: 1;
+}
+
+.form-group-inline label {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.form-group-inline select {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* Button Row */
+.button-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Generate Button */
+.generate-btn {
+  padding: 0.6rem 2.0rem;
+  background-color: #313131;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.generate-btn:hover {
+  background-color: #000000;
+}
+
+/* PDF Button using image */
+.pdf-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  align-self: center;
+  margin-left: 60px;
+}
+
+.download-pdf-btn {
+  width: 52px;
+  height: 52px;
+  transition: transform 0.2s;
+}
+
+.download-pdf-btn:hover {
+  transform: scale(1.1);
+}
+
+.analytics-results {
+  margin-bottom: 2rem;
+}
+
+.analytics-results h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.analytics-results table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.analytics-results th,
+.analytics-results td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.analytics-form .form-label {
+  font-weight: 500;
+}
+
+/* Responsive layout */
+@media (max-width: 1024px) {
+  .analytics-content-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-section canvas {
+    min-width: 100% !important;
+  }
+}
+.analytics-thumbnail {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 1rem auto;
+  display: flex;
+  justify-content: center;
+}
+
+.analytics-thumbnail img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.Keshi-title {
+  text-align: left;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+
+
+  
+  
+  
+  
+  
+
+
+  
+  

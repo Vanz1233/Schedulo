@@ -8,6 +8,8 @@ import { PageThreeComponent } from './ticket/page-three/page-three.component';
 import { PageFourComponent } from './ticket/page-four/page-four.component';
 import { PageFiveComponent } from './ticket/page-five/page-five.component';
 import { SeatingComponent } from './ticket/seating/seating.component';
+import { TicketPageComponent } from './ticket-page/ticket-page.component';
+import { EventHomepageComponent } from './event-homepage/event-homepage.component';
 
 
 
@@ -20,7 +22,9 @@ import { SeatingComponent } from './ticket/seating/seating.component';
     PageThreeComponent,
     PageFourComponent,
     PageFiveComponent,
-    SeatingComponent
+    SeatingComponent,
+    TicketPageComponent,
+    EventHomepageComponent
   ],
   imports: [
     CommonModule

@@ -1,50 +1,167 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Schedulo</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" 
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/events">Events</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/ticket">Ticket</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/report">Report</a>
-        </li>
-      </ul>
-      
-      <span class="navbar-text">
-        <!-- Show Login/Signup if user is NOT logged in -->
-        <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-dark">Login</a>
-        <a *ngIf="!isLoggedIn" routerLink="/signup" class="btn btn-light">Signup</a>
-        
-        <!-- Show Logout if user is logged in -->
-        <button *ngIf="isLoggedIn" class="btn btn-danger" (click)="logout()">Logout</button>
-      </span>
-    </div>
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand" href="admin_homepage.html">
+          <img src="assets/schedulo_logo.png" alt="Schedulo Logo">
+      </a>
+
+      <!-- Navbar Toggler for Mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Content -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto gap-4">
+              <li class="nav-item">
+                  <a class="nav-link" href="admin_homepage.html">HOME</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">REPORT</a>
+              </li>
+          </ul>
+
+          <!-- Buttons -->
+          <div class="d-flex">
+            <button class="btn btn-primary" (click)="goToLogin()">Login</button>
+        </div>                   
+      </div>
   </div>
 </nav>
 
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-sm-6 mb-3" *ngFor="let event of events">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ event.title }}</h5>
-          <p class="card-text">{{ event.description }}</p>
-          <a href="#" class="btn btn-primary">View Details</a>
+<br>
+<h2 class="upcoming-events-home">Welcome to Schedulo!</h2>
+
+<div class="container mt-5">
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="event-card">
+                <img src="assets/aespa concert.jpg" class="event-image" alt="Event">
+                <div class="event-content">
+                    <!-- <span class="event-tag">Kpop Concert</span> -->
+                    <h5 class="mt-2"><strong>aespa LIVE TOUR - SYNK : PARALLEL LINE - ENCORE</strong></h5>
+                    <br>
+                    <p><strong>MAR 16</strong></p>
+                    <p>18:00 PM - 23:00 PM</p>
+                    <p><strong>FROM RM 399</strong></p>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="col-md-3">
+            <div class="event-card">
+                <img src="assets/babymonster concert.jpg" class="event-image" alt="Event">
+                <div class="event-content">
+                    <!-- <span class="event-tag">Kpop Concert</span> -->
+                    <h5 class="mt-2"><strong>BABYMONSTER 1st WORLD TOUR 'HELLO MONSTERS'</strong></h5>
+                    <br>
+                    <p><strong>JUN 21</strong></p>
+                    <p>18:00 PM - 23:00 PM</p>
+                    <p><strong>FROM RM 499</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="event-card">
+                <img src="assets/keshi concert.jpg" class="event-image" alt="Event">
+                <div class="event-content">
+                    <!-- <span class="event-tag">Kpop Concert</span> -->
+                    <h5 class="mt-2"><strong>keshi REQIUEM WORLD TOUR 2025</strong></h5>
+                    <br>
+                    <p><strong>JUN 21</strong></p>
+                    <p>18:00 PM - 23:00 PM</p>
+                    <p><strong>FROM RM 499</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="event-card">
+                <img src="assets/gem concert.png" class="event-image" alt="Event">
+                <div class="event-content">
+                    <!-- <span class="event-tag">Kpop Concert</span> -->
+                    <h5 class="mt-2"><strong>G.E.M. 'I AM GLORIA' World Tour</strong></h5>
+                    <br>
+                    <p><strong>FEB 15</strong></p>
+                    <p>18:00 PM - 23:00 PM</p>
+                    <p><strong>FROM RM 399</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="event-card">
+                <img src="assets/aespa concert.jpg" class="event-image" alt="Event">
+                <div class="event-content">
+                    <!-- <span class="event-tag">Kpop Concert</span> -->
+                    <h5 class="mt-2"><strong>aespa LIVE TOUR - SYNK : PARALLEL LINE - ENCORE</strong></h5>
+                    <br>
+                    <p><strong>MAR 16</strong></p>
+                    <p>18:00 PM - 23:00 PM</p>
+                    <p><strong>FROM RM 399</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="event-card">
+                <img src="assets/aespa concert.jpg" class="event-image" alt="Event">
+                <div class="event-content">
+                    <!-- <span class="event-tag">Kpop Concert</span> -->
+                    <h5 class="mt-2"><strong>aespa LIVE TOUR - SYNK : PARALLEL LINE - ENCORE</strong></h5>
+                    <br>
+                    <p><strong>MAR 16</strong></p>
+                    <p>18:00 PM - 23:00 PM</p>
+                    <p><strong>FROM RM 399</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="event-card">
+                <img src="assets/aespa concert.jpg" class="event-image" alt="Event">
+                <div class="event-content">
+                    <!-- <span class="event-tag">Kpop Concert</span> -->
+                    <h5 class="mt-2"><strong>aespa LIVE TOUR - SYNK : PARALLEL LINE - ENCORE</strong></h5>
+                    <br>
+                    <p><strong>MAR 16</strong></p>
+                    <p>18:00 PM - 23:00 PM</p>
+                    <p><strong>FROM RM 399</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="event-card">
+                <img src="assets/aespa concert.jpg" class="event-image" alt="Event">
+                <div class="event-content">
+                    <!-- <span class="event-tag">Kpop Concert</span> -->
+                    <h5 class="mt-2"><strong>aespa LIVE TOUR - SYNK : PARALLEL LINE - ENCORE</strong></h5>
+                    <br>
+                    <p><strong>MAR 16</strong></p>
+                    <p>18:00 PM - 23:00 PM</p>
+                    <p><strong>FROM RM 399</strong></p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
+<!-- Footer -->
+<footer class="py-3 mt-5 bg-light border-top">
+  <div class="container d-flex flex-wrap justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+          <img src="assets/schedulo.png" alt="Logo" style="width: 80px; height: auto;">
+          <span class="ms-2">&copy; 2025 Schedulo. All rights reserved.</span>
+      </div>
+      <div class="d-flex">
+          <a href="#" class="footer-link mx-2 text-decoration-none">Terms and Conditions</a>
+          <a href="#" class="footer-link mx-2 text-decoration-none">Privacy Policy</a>
+          <a href="#" class="footer-link mx-2 text-decoration-none">Contact Us</a>
+      </div>
+  </div>
+</footer>
 
 

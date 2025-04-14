@@ -1,0 +1,345 @@
+body {
+    background-color: #f3f3e5 !important;
+    margin: 0;
+    font-family: 'Monsterrat', sans-serif;
+    padding-bottom: 70px;
+
+}
+.seating-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+    flex-direction: column;
+    width: 100%;
+}
+
+.stage, .control-room {
+    width: 60%;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid black;
+    background-color: rgb(223, 223, 223);
+    margin-top: 50px !important;
+    margin-bottom: 50px;
+}
+
+.stage {
+    margin-top: 70px !important;
+}
+
+.row-section {
+    display: flex !important;
+    justify-content: center; /* Centers items */
+    align-items: center; /* Aligns them vertically */
+    gap: 20px; /* Adds space between sections */
+    width: 100% !important;
+}
+
+.row-section div {
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.section-lf3 {
+    width: 300px !important;
+    height: 150px;
+    background-color: #0734ff;
+    color: #f5f5f5;
+    clip-path: polygon(0% 0%, 85% 0%, 100% 25%, 100% 75%, 85% 100%, 0% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-direction: column;
+}
+
+.selected {
+    background-color: #1c1c1c !important; /* Rich dark gray */
+    color: #ffffff !important; /* White text for contrast */
+    /* box-shadow: 0px 0px 10px rgba(37, 79, 58, 0.5); Soft glowing effect */
+    /* filter: drop-shadow(0px 0px 10px rgba(37, 79, 58, 0.7)); */
+    transform: scale(1.08); /* Slight pop-up effect */
+}
+
+.section:active {
+    transform: scale(0.98); /* Click effect */
+}
+
+.section-lf2 {
+    width: 400px !important;  /* Adjust width as needed */
+    height: 150px;  /* Adjust height as needed */
+    background-color: #00aaff;  /* Light blue color */
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    clip-path: polygon(
+                5% 0%,        /* Top-left corner, inset */
+                95% 0%,       /* Top-right corner, inset */
+                100% 15%,     /* Right edge, 15% from top */
+                100% 85%,     /* Right edge, 85% from top */
+                100% 100%,     /* Bottom-right corner, straight horizontal */
+                0% 100%,      /* Bottom-left corner, straight horizontal */
+                0% 85%,       /* Left edge, 85% from top */
+                0% 15%        /* Left edge, 15% from top */
+            );
+            flex-direction: column;
+}
+
+.section-lf1 {
+    width: 300px !important;
+    height: 150px;
+    background-color: #0734ff;
+    color: #f5f5f5;
+    clip-path: polygon(0% 15%, 0% 85%, 25% 100%, 100% 100%, 100% 85%, 100% 15%, 100% 0%, 25% 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-direction: column;
+}
+
+.section-b3 {
+    width: 300px !important;
+    height: 150px;
+    background-color: #02e8bd;
+    color: #000000;
+    clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 75% 100%, 100% 60%, 100% 0%, 75% 0%, 25% 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-direction: column;
+}
+
+.section-b2 {
+    width: 400px !important;  /* Adjust width as needed */
+    height: 150px;  /* Adjust height as needed */
+    background-color: #02c501;  /* Light blue color */
+    color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    /* Removed clip-path */
+    flex-direction: column;
+}
+
+
+.section-b1 {
+    width: 300px !important;
+    height: 150px;
+    background-color: #02e8bd;
+    color: #000000;
+    clip-path: polygon(0% 0%, 0% 60%, 25% 100%, 100% 100%, 100% 85%, 100% 15%, 100% 0%, 25% 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-direction: column;
+}
+
+.btn-next {
+    background: #244e3a !important; /* Green */
+    color: #f5f5f5 !important;
+    font-size: 18px !important;
+    width: 300px !important;
+    font-weight: bold !important;
+    height: 50px;
+}
+
+.btn-next:hover {
+    background: #000000 !important; /* Green */
+    color: #ffffff !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+
+/* Ticket Form Styling */
+.ticket-form {
+    background: #ffffff; /* White background for form */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+.ticket-form h2 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.ticket-form p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.ticket-form h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Styling for input fields */
+.ticket-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Ensure row layout for form fields */
+.ticket-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Adjust field width for responsiveness */
+.ticket-row div {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Button Styles */
+.add-ticket-btn, .remove-ticket-btn {
+    padding: 8px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}
+
+.add-ticket-btn {
+    background: #c5d3cc !important; /* Green */
+    color: #244e3a !important;
+    border: 1px solid #244e3a !important;
+}
+
+.add-ticket-btn:hover {
+    background: #244e3a !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+.remove-ticket-btn {
+    background: #ffd1d5 !important; /* Red */
+    color: #c82333!important;
+    border: 1px solid red !important;
+    margin-top: 20px !important;
+}
+
+.remove-ticket-btn:hover {
+    background: #c82333 !important;
+    color: white !important;
+}
+
+/* Align Buttons */
+.ticket-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ticket-buttons .btn {
+    width: 150px;
+    padding: 10px;
+}
+
+.divider {
+    border: 1px solid #ccc; /* Adjust thickness and color */
+    margin: 20px 0; /* Add spacing */
+    width: 100%;
+}
+
+.ticket-row label {
+    font-weight: bold !important;
+}
+
+.btn-clear {
+    background: #dcdcdc !important; /* Green */
+    color: #222222 !important;
+    border: 1px solid #606060 !important;
+    font-size: 18px !important;
+}
+
+.btn-clear:hover {
+    background: #606060 !important; /* Green */
+    color: #ffffff !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+
+.btn-next2 {
+    background: #244e3a !important; /* Green */
+    color: #f5f5f5 !important;
+    font-size: 18px !important;
+}
+
+.btn-next2:hover {
+    background: #000000 !important; /* Green */
+    color: #ffffff !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+
+/* Custom Dropdown Styling */
+.custom-dropdown {
+    width: 100px !important; /* Full width */
+    max-width: 100px !important; /* Adjust size */
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+    margin-top: 10px !important;
+}
+
+.form-select {
+    margin-top: 10px !important;
+}
+
+.form-select.custom-dropdown {
+    width: 100px !important; /* Override Bootstrap */
+    max-width: 100px !important;
+}
+
+.custom-dropdown:hover, 
+.custom-dropdown:focus {
+    border-color: #2a4d39; /* Green highlight */
+    box-shadow: 0 0 5px rgba(42, 77, 57, 0.5);
+}
+
+/* Custom Button Styling */
+.custom-btn {
+    background-color: #2a4d39 !important; /* Custom dark green */
+    border-color: #2a4d39 !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+.custom-btn:hover {
+    background-color: #1e382b !important; /* Darker shade on hover */
+    border-color: #1e382b !important;
+    transform: scale(1.05) !important; /* Slight hover effect */
+}
+
+.seatingticket-title h2{
+    align-items: center;
+}
+
+.section-lf3, .section-lf2, .section-lf1 {
+    margin-bottom: 10px; /* Adds spacing between top and bottom sections */
+}
+
+.section-b3, .section-b2, .section-b1 {
+    margin-top: 20px; /* Adds spacing between top and bottom sections */
+}

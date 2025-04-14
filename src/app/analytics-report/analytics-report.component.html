@@ -1,1 +1,105 @@
-<p>analytics-report works!</p>
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand" href="admin_homepage.html">
+        <img src="assets/schedulo_logo.png" alt="Schedulo Logo">
+      </a>
+
+      <!-- Navbar Toggler for Mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Content -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto gap-4">
+          <li>
+            <a class="nav-link">EVENT ORGANIZERS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="goBackToEventHomepage()">HOME</a>
+          </li>
+        </ul>
+
+        <!-- User Info -->
+        <div class="d-flex align-items-center">
+          <i class="fa-solid fa-user-circle fa-lg me-2"></i>
+          <span class="fw-bold">Victoria</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="analytics-container">
+    <h2 class="analytics-title">Analytics Report - Keshi Requiem Tour</h2>
+  
+    <div class="analytics-content-row">
+      <!-- Form on the left -->
+      <div class="analytics-form">
+        <div class="analytics-thumbnail">
+          <img src="assets/keshi concert.jpg" alt="Keshi Concert" />
+        </div> 
+        <h4 class="Keshi-title">Keshi Requiem Tour</h4>       
+        <h5>View Reports</h5>
+        <form (ngSubmit)="generateReport()" class="report-inline-form">
+          <div class="form-group-inline">
+            <label for="reportType">Report Type</label>
+            <select id="reportType" [(ngModel)]="reportType" name="reportType" required>
+              <option value="ticketSales">Ticket Sales</option>
+              <option value="revenue">Revenue</option>
+              <option value="seatOccupancy">Seat Occupancy</option>
+            </select>
+          </div>
+  
+          <div class="form-group-inline">
+            <label for="period">Sort by:</label>
+            <select id="period" [(ngModel)]="period" name="period" required>
+              <option value="daily">Days</option>
+              <option value="weekly">Weeks</option>
+              <option value="monthly">Months</option>
+            </select>
+          </div>
+  
+          <div class="button-row">
+            <button type="submit" class="generate-btn">Generate Chart</button>
+            <button type="button" (click)="confirmDownload()" class="pdf-btn">
+              <img src="assets/download-pdf.png" alt="Download PDF" class="download-pdf-btn">
+            </button>
+          </div>
+        </form>
+      </div>
+  
+      <!-- Chart on the right -->
+      <div *ngIf="reportData.length > 0" id="chart-container" class="chart-section">
+        <canvas baseChart
+          [data]="chartData"
+          [options]="chartOptions"
+          [type]="chartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Footer -->
+  <footer class="py-3 mt-5 bg-light border-top">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <img src="assets/schedulo.png" alt="Logo" style="width: 80px; height: auto;">
+        <span class="ms-2">&copy; 2025 Schedulo. All rights reserved.</span>
+      </div>
+      <div class="d-flex">
+        <a href="#" class="footer-link mx-2 text-decoration-none">Terms and Conditions</a>
+        <a href="#" class="footer-link mx-2 text-decoration-none">Privacy Policy</a>
+        <a href="#" class="footer-link mx-2 text-decoration-none">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+
+
+  
+  

@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service'; // Import AuthService
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    standalone: false
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -20,22 +21,31 @@ export class LoginComponent {
     private authService: AuthService // Inject AuthService
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]], // ✅ Using email instead of username
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  onLogin() { // Function to handle login form submission
+  onLogin() {
     if (this.loginForm.valid) {
-      this.http.post<{ token: string }>('http://localhost:3000/api/login', this.loginForm.value)
+      this.http.post<{ token: string; role: string }>('http://localhost:3000/api/auth/login', this.loginForm.value)
         .subscribe({
           next: (response) => {
             if (response?.token) {
-              this.authService.setToken(response.token); // Store token using AuthService
-              alert('Login successful! Redirecting to homepage...');
-              this.router.navigate(['/home']); // Redirect to homepage
+              this.authService.setToken(response.token); // Store token
+
+              // Redirect based on role
+              if (response.role === 'admin') {
+                alert('Login succesful!');
+                this.router.navigate(['/admin-homepage']);
+              } else if (response.role === 'event-organiser') {
+                alert('Login Successful!');
+                this.router.navigate(['/event-homepage']);
+              } else {
+                this.errorMessage = 'Unkown Schedulo Role.';
+              }
             } else {
-              this.errorMessage = 'Invalid response from server. No token received.';
+              this.errorMessage = 'Invalid response from server. Please try again.';
             }
           },
           error: (err) => {
@@ -44,7 +54,7 @@ export class LoginComponent {
           }
         });
     } else {
-      this.errorMessage = 'Please fill out the form correctly before submitting.';
+      this.errorMessage = 'Please enter a valid email and password.';
     }
   }
 
@@ -56,6 +66,7 @@ export class LoginComponent {
     return '';
   }
 }
+
 
 
 

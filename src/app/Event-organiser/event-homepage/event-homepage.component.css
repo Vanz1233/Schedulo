@@ -1,0 +1,103 @@
+.form-container {
+    max-width: 700px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+}
+
+.form-title {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #bababa;
+}
+
+.form-label {
+    font-weight: bold !important;
+}
+
+.submit-btn {
+    background-color: #264e3a !important;
+    color: rgb(230, 230, 230) !important;
+    font-weight: bold !important;
+    font-size: 18px !important;
+    border-radius: 5px !important;
+    width: 100% !important;
+    height: 40px;
+}
+
+.submit-btn:hover {
+    background-color: #c5d3cc !important;
+    color: #264e3a !important;
+    border: 1px solid black !important;
+}
+
+.container-eventorganizer {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Organizer Grid */
+.organizers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: transparent !important; /* Removes white background */
+    border: none; /* Removes border */
+    box-shadow: none; /* Removes shadow */
+}
+
+/* Organizer Box */
+.organizer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: #ddd; /* Placeholder color */
+}
+
+/* Organizer Name */
+.organizer p {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Register Button */
+.register-btn {
+    background-color: #f5f5f5 !important;
+    margin-top: 0 !important;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.register-btn:hover {
+    background-color: #010101 !important;
+    margin-top: 0 !important;
+    color: #f5f5f5 !important;
+    text-decoration: none;
+}
+
+.list-organizer {
+    margin-top: 30px !important;
+}

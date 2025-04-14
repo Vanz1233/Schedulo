@@ -9,10 +9,23 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisteredEventOrganisersComponent } from './Admin/registered-event-organisers/registered-event-organisers.component';
-import { PageOneComponent } from './Event-organiser/ticket/page-one/page-one.component';
 import { PasswordComponent } from './password/password.component';
-import { SeatingComponent } from './Event-organiser/ticket/seating/seating.component';
 import { AdminHomepageComponent } from './Admin/admin-homepage/admin-homepage.component';
+import { TicketPageComponent } from './Event-organiser/ticket-page/ticket-page.component';
+import { SelectSectionComponent } from './attendees/select-section/select-section.component';
+import { B1Component } from './attendees/b1/b1.component';
+import { B2Component } from './attendees/b2/b2.component';
+import { B3Component } from './attendees/b3/b3.component';
+import { Lf1Component } from './attendees/lf1/lf1.component';
+import { Lf2Component } from './attendees/lf2/lf2.component';
+import { Lf3Component } from './attendees/lf3/lf3.component';
+import { Payment1Component } from './payment/payment-1/payment-1.component';
+import { Payment2Component } from './payment/payment-2/payment-2.component';
+import { Payment3Component } from './payment/payment-3/payment-3.component';
+import { Payment4Component } from './payment/payment-4/payment-4.component';
+import { AnalyticsReportComponent } from './analytics-report/analytics-report.component';
+import { NgChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -22,17 +35,29 @@ import { AdminHomepageComponent } from './Admin/admin-homepage/admin-homepage.co
     CreateEventOrganiserComponent,
     SignupComponent,
     RegisteredEventOrganisersComponent,
-    PageOneComponent,
     PasswordComponent,
-    SeatingComponent,
-    AdminHomepageComponent
+    AdminHomepageComponent,
+    TicketPageComponent,
+    SelectSectionComponent,
+    B1Component,
+    B2Component,
+    B3Component,
+    Lf1Component,
+    Lf2Component,
+    Lf3Component,
+    Payment1Component,
+    Payment2Component,
+    Payment3Component,
+    Payment4Component,
+    AnalyticsReportComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
